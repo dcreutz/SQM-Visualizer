@@ -70,6 +70,9 @@ h2.title {
 	width: 10vw;
 	display: inline-block;
 }
+.defaultcursor {
+	cursor: default;
+}
 .value {
 	width: 200px;
 	display: inline-block;

@@ -165,17 +165,21 @@ document.addEventListener("DOMContentLoaded",function(event) {elm.style.display=
 	</div>
 	<div id="chartkey">
 		<div id="chartkeyhelper">
-			<div class="keyitem tooltip">
-				Solar
-				<span class="toptooltiptext">
-					Readings affected by the sun, calculated from solar altitude
+			<div class="keyitem">
+				<span class="tooltip defaultcursor">
+					Solar
+					<span class="toptooltiptext">
+						Readings affected by the sun, calculated from solar altitude
+					</span>
 				</span>
 				<span class="keybox"><span class="keylinecontainer"><span class="keyline"></span></span><span class="keysun tooltip" id="keysun1"><span class="keytooltiptext" id="keysuntooltip1"></span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keysun tooltip" id="keysun2"><span class="keytooltiptext" id="keysuntooltip2"></span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keysun tooltip" id="keysun3"><span class="keytooltiptext" id="keysuntooltip3"></span></span><span class="keylinecontainer"><span class="keyline"></span></span></span>
 			</div>
-			<div class="keyitem tooltip">
-				Lunar
-				<span class="toptooltiptext">
-					Readings affected by the moon, calculated from lunar altitude and illumination
+			<div class="keyitem">
+				<span class="tooltip defaultcursor">
+					Lunar
+					<span class="toptooltiptext">
+						Readings affected by the moon, calculated from lunar altitude and illumination
+					</span>
 				</span>
 				<span class="keybox"><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon1"><span class="keytooltiptext">Heavy moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon2"><span class="keytooltiptext">Heavy moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon3"><span class="keytooltiptext">High moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon4"><span class="keytooltiptext">High moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon5"><span class="keytooltiptext">Mild moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon6"><span class="keytooltiptext">Mild moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon7"><span class="keytooltiptext">Low moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon8"><span class="keytooltiptext">Low moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon9"><span class="keytooltiptext">Little moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon10"><span class="keytooltiptext">(Effectively) no moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span></span>
 			</div>
