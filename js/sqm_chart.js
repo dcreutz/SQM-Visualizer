@@ -95,7 +95,8 @@ class SQMChart {
 				this.#barChart.deactivateSqm(sqmId);
 			}
 		});
-		this.#computeTimesFrom(this.#chartReadingsSet)
+		this.#computeTimesFrom(this.#chartReadingsSet);
+		sqmManager.updateLatest();
 		this.redrawTimeChart();
 		this.redrawBarChart();
 	}
@@ -104,6 +105,7 @@ class SQMChart {
 	activateSqmId(sqmId) {
 		this.#activeSqmIds.push(sqmId);
 		this.#timeChart.activateSqm(sqmId);
+		sqmManager.updateLatest();
 	}
 	
 	// deactivate an sqm
@@ -112,6 +114,7 @@ class SQMChart {
 			this.#activeSqmIds.splice(this.#activeSqmIds.indexOf(sqmId),1);
 			this.#timeChart.deactivateSqm(sqmId);
 		}
+		sqmManager.updateLatest();
 	}
 	
 	// array of which sqms are active

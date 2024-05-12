@@ -121,7 +121,7 @@ class SQMUserDisplay {
 	// handle the latest reading display
 	static showLatestBox() {
 		SQMUserDisplay.#allClassInnerHTML('showhidelatest',"Hide latest reading");
-		$('latestbox').style.maxHeight = $('latesttext').offsetHeight + "px";
+		$('latestbox').style.maxHeight = ($('latesttext').offsetHeight + 2) + "px";
 	}
 	
 	static hideLatestBox() {
@@ -153,7 +153,7 @@ class SQMUserDisplay {
 	// handle the statistics display
 	static showStatsBox() {
 		SQMUserDisplay.#allClassInnerHTML('showhidestats',"Hide statistics");
-		$('statsbox').style.maxHeight = $('stats').offsetHeight + "px";
+		$('statsbox').style.maxHeight = ($('stats').offsetHeight + 2) + "px";
 	}
 	
 	static hideStatsBox() {

@@ -21,6 +21,7 @@ class SQMManager {
 	// keep track of the earliest and latest readings for e.g. building the monthly dropdown
 	#earliestDatetimes;
 	#latestDatetimes;
+	#latestReadings;
 	
 	// data requester object actually manages the calls to the backend
 	#sqmDataRequester;
@@ -39,6 +40,7 @@ class SQMManager {
 		this.#defaultSqms = defaultSqms;
 		this.#earliestDatetimes = {};
 		this.#latestDatetimes = {};
+		this.#latestReadings = {};
 	}
 	
 	defaultSqms() {
@@ -335,6 +337,7 @@ class SQMManager {
 			this.availableSqmInfos[sqmId] = this.inMemorySqms[sqmId].sqmInfo();
 			this.#earliestDatetimes[sqmId] = this.inMemorySqms[sqmId].earliestDatetime();
 			this.#latestDatetimes[sqmId] = this.inMemorySqms[sqmId].latestDatetime();
+			this.#latestReadings[sqmId] = this.inMemorySqms[sqmId].latestReading().reading;
 			SQMUserInputs.setAvailableMonthsFrom(
 				_.min(_.values(this.#earliestDatetimes)),
 				_.max(_.values(this.#latestDatetimes))
@@ -371,18 +374,24 @@ class SQMManager {
 		_.keys(sqmResponses).forEach((sqmId) => {
 			this.#earliestDatetimes[sqmId] = sqmResponses[sqmId].startDatetime;
 			this.#latestDatetimes[sqmId] = sqmResponses[sqmId].endDatetime;
+			this.#latestReadings[sqmId] =
+				sqmResponses[sqmId].readings[this.#latestDatetimes[sqmId]].reading;
 		});
+		this.updateLatest();
+	}
+	
+	// update the latest reading display
+	updateLatest() {
 		const latestDatetimeId = this.activeSqmIds().length == 0 ? null :
 			this.activeSqmIds().reduce((latest,current) =>
 			this.#latestDatetimes[latest] > this.#latestDatetimes[current] ?
 				latest : current
 		);
 		if (latestDatetimeId) {
-			const latestDatetime = this.#latestDatetimes[latestDatetimeId];
 			SQMUserDisplay.setLatestReading({
 				sqmId: latestDatetimeId,
-				datetime: latestDatetime,
-				value: sqmResponses[latestDatetimeId].readings[latestDatetime].reading
+				datetime: this.#latestDatetimes[latestDatetimeId],
+				value: this.#latestReadings[latestDatetimeId]
 			},this.activeSqmIds().length > 1);
 		} else {
 			SQMUserDisplay.setLatestReading(null);

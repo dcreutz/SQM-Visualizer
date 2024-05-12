@@ -163,6 +163,10 @@ class SQMDataInMemory {
 		return _.max(_.keys(this.#allData[_.max(_.keys(this.#allData))]));
 	}
 	
+	latestReading() {
+		return this.#allData[_.max(_.keys(this.#allData))][this.latestDatetime()];
+	}
+	
 	readingsRange() {
 		const readings = {};
 		const earliestDatetime = this.earliestDatetime();
