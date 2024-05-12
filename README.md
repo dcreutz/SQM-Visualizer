@@ -104,3 +104,9 @@ The software works well in conjunction with [PySQM](https://github.com/mireianie
 
 Thanks to [chart.js](https://www.chartjs.org/), [chartjs-datefns-adapter](https://github.com/chartjs/chartjs-adapter-date-fns), [dateFns](https://date-fns.org/), [flatpickr](https://flatpickr.js.org/), [multiselect](https://github.com/miket-dev/multiselect), [papaparse](https://github.com/mholt/PapaParse), [suncalc](https://github.com/mourner/suncalc) and [suncalc-php](https://github.com/gregseth/suncalc-php).
 Thanks to Bill Kowalik for sharing his regression analysis code which the SQM Data Retriever's regression algorithm is loosely based on.
+
+## Licensing
+
+The SQM Visualizer software is licensed under the GNU Affero General Public License version 3 (at your option any later version) and, as such, is free and open-source.
+
+If you wish to incorporate it or its components (including the SQM Data Retriever) in a substantial way in software not sharing that or a similar license, a dual licensing scheme may be arranged at the discretion of the author of the code/owner of the copyright.
