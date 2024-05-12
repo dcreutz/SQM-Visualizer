@@ -349,7 +349,7 @@ class SQMChart {
 		}
 	}
 	
-	showingWhichy() {
+	showingWhich() {
 		return this.#showWhich;
 	}
 }

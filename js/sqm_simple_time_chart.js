@@ -146,13 +146,13 @@ class SQMSimpleTimeChart {
 			var readings;
 			switch (showWhich) {
 				case 'all':
-					readings = this.#readingsSet.allReadings();
+					readings = this.#readingsSet.allReadings()[sqmId];
 					break;
 				case 'noCloudy':
-					readings = this.#readingsSet.noCloudyReadings();
+					readings = this.#readingsSet.noCloudyReadings()[sqmId];
 					break;
 				case 'noSunMoonClouds':
-					readings = this.#readingsSet.noSunMoonCloudsReadings();
+					readings = this.#readingsSet.noSunMoonCloudsReadings()[sqmId];
 					break;
 			}
 			dataset.data = _.keys(readings).sort().map((datetime) => {
