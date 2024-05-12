@@ -19,11 +19,8 @@ The graph consists of a line with circles representing each downloaded data poin
 For each station, there are a variety of color/shading options that may appear:
 
 * Solid dark lines and circles indicate that the readings exist, that there is no interference from the moon, sun, or clouds, and the data can be presumed to be valid.
-
 * Yellow/orange circles indicate that the sun is within 12º of the horizon, and therefore can be presumed to have an influence on the level of darkness.
-
 * Lines and circles that are “ghosts” (i.e., faint) indicate that it is significantly cloudy (as calculated by algorithms with the SQM Visualizer) and any data should not be considered to represent clear-sky darkness values.
-
 * Circles that are neither yellow nor solid indicate that the moon is above the horizon.  These circles may run from faint to deep gray, indicating the intensity of the moon’s probable interference (a combination of altitude and phase of the moon).  The darker the circle, the less moon interference is present.  (Note: the level of moon interference is calculated from information on moon altitude and phase and is not itself measured.)
 
 Since the SQM Visualizer can show multiple stations at one time, each station is assigned a specific color (blue, red, green, etc.).  Depending on the specific configuration of your implementation, the default station for your implementation is Deep Blue.  As additional stations are identified for display, the SQM Visualizer will assign additional colors.  A legend below the graphical display provides the color associated with each displayed station, along with it’s Latitude, Longitude, and Local Time Zone (and Elevation is that is specified in the data files).   
@@ -43,29 +40,17 @@ Below the graph is the legend showing the colors for each displayed station, and
 Clicking with the right mouse button anywhere in the graphical display area opens an Options Menu.  The options are:
 
 * Display Image in Separate Tab – which displays the current graph as an image in a new tab
-
 * Save Image – which downloads the current graph image as a .png file to your default download folder
-
 * Show/Hide Statistics – which adds a row above the graph displaying statistics for the time interval displayed on the graph:  For each station selected for display, statistics shown are: Name of Station; Mean SQM value; Median SQM value; Number of Data Readings; and Best Reading with date/time of it’s first occurrence
-
 * Show/Hide bar chart – which displays a bar chart below the data display providing an aggregate view of the data readings for each interval
-
 * Hide/Show best reading – which removes the display of the best reading during the time interval that appears above the graphical displayed
-
 * Hide/Show latest reading – which removes the display of the last reading that appears below the graphical display
-
 * Exclude/Include sun, moon, clouds data – which removes those data points where the algorithms of the SQM Visualizer evaluates that the data are influenced by the sun, moon, or clouds; this results in gaps in the graph and shows data points only when the sky is dark and presumed to be clear
-
 * Exclude/Include clouds data – which removes those data points where the algorithms of the SQM Visualizer evaluates that the data are influenced by clouds (but does not remove sun or moon influenced data)
-
 * Axis minimum – which sets the minimum SQM reading to be included on the Y-axis
-
 * Axis maximum – which sets the maximum SQM reading to be included on the Y-axis
-
 * Reverse Y axis – which reverses the direction of the Y-axis
-
 * Hide/Show legend – which removes the legend below the graph showing the color codes and geographical data for the (possibly multiple) SQM stations displayed on the graph
-
 * Load SQM data – which allows the user to load a separate datafile of SQM data not established as a standard station.  This data must be structured in a precisely defined way documented elsewhere.  For each dataset uploaded, the name of the station is Upload1, Upload2, etc.  Note that this data does not persist past the current session of the SQM Visualizer
 
 ## Detailed information for a reading
