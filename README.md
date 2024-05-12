@@ -74,15 +74,19 @@ Browser callable script to clear the cache.  Disabled by default, to enable it, 
 
 ### bin/clear_cache_cli.php
 
-Command line script to clear the cache manually.
+Command line script to clear the cache.  This script can only be run when in the directory containing sqm.php and config.php.
 
 ### bin/update_cache_cli.php
 
-Command line script to manually update the cache.  When working with large datasets, and most especially when resizing images, this script should be used prior to the first browser call to the backend.
+Command line script to update the cache.  This script can only be run when in the directory containing sqm.php and config.php.
+
+When working with large datasets, and most especially when resizing images, this script should be used prior to the first browser call to the backend.
 
 Note that this script must be run as the same server user as the web server runs as or after running it, the cache must be manually set to be readable and writeable by the web user.
 
-Optionally, a cron job can be configured to periodically update the cache.
+Optionally, a cron job can be configured to periodically update the cache using a cron.d file (or crontab entry) similar to
+
+```5 * * * * www-data cd /var/www/html/sqm; /var/www/html/sqm/bin/update_cache_cli.php > /dev/null 2>&1```
 
 ## Server backend
 
