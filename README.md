@@ -51,9 +51,9 @@ The SQM Visualizer software is free and open-source, provided as-is and licensed
 10. [Optional] Create .info files in each data directory specifying information about the SQM.  The file should be named .info and have the structure
 ```
 	Name: My SQM Device
-	Latitude: 30
-	Longitude: -110
-	Elevation: 100
+	Latitude: 30.1234
+	Longitude: -110.6789
+	Elevation: 100.2
 ```
 
 11. Go to http(s)://your-server/sqm-directory/index.php in your browser.  If cacheing is enabled, the first run make take some time to initially build the cache.
