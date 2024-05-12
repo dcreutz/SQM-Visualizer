@@ -18,6 +18,16 @@ The SQM Visualizer software is free and open-source, provided as-is and licensed
 
 [Standalone version](https://dcreutz.com/sqm/sqm_visualizer_standalone/sqm_visualizer.html)
 
+## Installation (Standalone)
+
+1. Download the standalone SQM Visualizer from this [link](full_dist/sqm_visualizer_standalone.tar.gz) by choosing 'View raw' on that page.
+
+2. Extract the files.
+
+3. Open sqm_visualizer.html in your browser.
+
+4. When prompted, select the data files on your computer (multiple files can be selected simultaneously).
+
 ## Installation (Server)
 
 1. Download the SQM Visualizer from this [link](full_dist/sqm_visualizer_server.tar.gz) by choosing 'View raw' on that page.
@@ -47,16 +57,6 @@ The SQM Visualizer software is free and open-source, provided as-is and licensed
 ```
 
 11. Go to http(s)://your-server/sqm-directory/index.php in your browser.  If cacheing is enabled, the first run make take some time to initially build the cache.
-
-## Installation (Standalone)
-
-1. Download the standalone SQM Visualizer from this [link](full_dist/sqm_visualizer_standalone.tar.gz) by choosing 'View raw' on that page.
-
-2. Extract the files.
-
-3. Open sqm_visualizer.html in your browser.
-
-4. When prompted, select the data files on your computer (multiple files can be selected simultaneously).
 
 ## User guide
 
@@ -91,6 +91,10 @@ Note that this script must be run as the same server user as the web server runs
 Optionally, a cron job can be configured to periodically update the cache using a cron.d file (or crontab entry) similar to
 
 ```5 * * * * www-data cd /var/www/html/sqm; /var/www/html/sqm/bin/update_cache_cli.php > /dev/null 2>&1```
+
+## Large numbers of SQMs
+
+If you have data files for more than about five SQMs, you may wish to take advantage of the [configuration option](config.MD) to only enable some of them and have a dropdown list allowing the user to select which subset are displayed in the chart.
 
 ## Server backend
 
