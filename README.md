@@ -74,11 +74,11 @@ Browser callable script to clear the cache.  Disabled by default, to enable it, 
 
 ### bin/clear_cache_cli.php
 
-Command line script to clear the cache.  This script can only be run when in the directory containing sqm.php and config.php.
+Command line script to clear the cache.  This script can only be run when in the directory containing sqm.php.
 
 ### bin/update_cache_cli.php
 
-Command line script to update the cache.  This script can only be run when in the directory containing sqm.php and config.php.
+Command line script to update the cache.  This script can only be run when in the directory containing sqm.php.
 
 When working with large datasets, and most especially when resizing images, this script should be used prior to the first browser call to the backend.
 
