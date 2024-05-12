@@ -2,7 +2,7 @@
 
 Open-source software for visualizing data collected by Unihedron Sky Quality Meters.
 
-Works with files in the 'International Dark Sky Association (IDA) NSBM Community Standards for Reporting Skyglow Observations' format ['International Dark Sky Association (IDA) NSBM Community Standards for Reporting Skyglow Observations' format]('International Dark Sky Association (IDA) NSBM Community Standards for Reporting Skyglow Observations' format) and files in the format output by the Unihedron software feature 'sun-moon-mw-clouds'.
+Works with files in the 'International Dark Sky Association (IDA) NSBM Community Standards for Reporting Skyglow Observations' format [http://www.darksky.org/night-sky-conservation/248](http://www.darksky.org/night-sky-conservation/248) and files in the format output by the Unihedron software feature 'sun-moon-mw-clouds'.
 
 The software can be run as a web application or standalone (no server).
 
