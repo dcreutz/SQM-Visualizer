@@ -6,7 +6,7 @@ Works with files in the 'International Dark Sky Association (IDA) NSBM Community
 
 The software can be run as a web application or standalone (no server).
 
-The SQM Visualizer software is licensed under the GNU Affero General Public License version 3, or (at your option) any later version.  The sofware was designed and developed by Darren Creutz.
+The SQM Visualizer software is provided as-is and is licensed under the GNU Affero General Public License version 3, or (at your option) any later version.  The sofware was designed and developed by Darren Creutz.
 
 ## Examples
 
@@ -17,6 +17,10 @@ The SQM Visualizer software is licensed under the GNU Affero General Public Lice
 [No cacheing](https://dcreutz.com/sqm/sqm_visualizer_examples/no_cacheing/index.php)
 
 [Standalone version](https://dcreutz.com/sqm/sqm_visualizer_standalone/sqm_visualizer.html)
+
+## User guide
+
+The main features of the SQM Visualizer are documented in the [user guide](UserGuide.MD) contributed by Alan Creutz.
 
 ## Installation (Server)
 
