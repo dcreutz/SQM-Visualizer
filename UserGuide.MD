@@ -61,7 +61,7 @@ If you hover over a specific data point, a pop-up window appears that displays t
 * Date/Time of the Reading
 * Moon status at the time of the reading
 * Sun status at the time of the reading
-* Mean $r^2$, a technical value used in calculating the estimated cloud d\cover; in general a higher r2 suggests a more cloudy sky
+* Mean $r^2$, a technical value used in calculating the estimated cloud d\cover; in general a higher $r^2$ suggests a more cloudy sky
 * Name of the SQM station that associated the datapoint
 
 The top option, “Click for image” allows the user to see an image of the sky as taken by an installed all-sky camera.  The image shown will be the one taken at the time nearest to the time of the reading.  If there are no available images or the closest in time is more than 20 minutes (configurable) from the time of the reading, no image will be shown.
