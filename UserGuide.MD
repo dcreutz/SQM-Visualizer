@@ -10,7 +10,7 @@ The Sky Quality Meter (SQM) captures and records data on how dark the sky is; th
 
 ## Main display
 
-Upon launching the SQM Visualizer, the user is presented with a graph showing the most recent set of SQM readings.  Depending on the time of day, the graph presents either data from “yesterday”, or data from today since evening civil twilight (when the sun is 12 degrees below the horizon).  (Prior to today’s civil twilight, the data shown is that for yesterday.}  The SQM Visualizer will update the graph in real time as new data is downloaded from the Unihedron device.
+Upon launching the SQM Visualizer, the user is presented with a graph showing the most recent set of SQM readings.  Depending on the time of day, the graph presents either data from “yesterday”, or data from today since evening nautical twilight (when the sun is 15 degrees below the horizon; optionally this can be configured to be civil or astronomical twilight).  (Prior to today’s civil twilight, the data shown is that for yesterday.}  The SQM Visualizer will update the graph in real time as new data is downloaded from the Unihedron device.
 
 While there are number of configuration options that can tweak the specifics of the display for individual implementations, the default configuration presents the data with the best readings at the bottom of the graph and the readings for the brightest sky at the top.  Since readings typically run from evening civil twilight into the night (ending at morning civil twilight), the readings presented generally look like a broad valley, rapidly moving towards the best readings at the bottom of the graph, running through the night, and then moving upwards as the sun rises in the morning.
 
