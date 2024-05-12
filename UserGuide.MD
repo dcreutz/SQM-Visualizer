@@ -1,5 +1,13 @@
 # Sky Quality Meter (SQM) Visualizer user guide
 
+Contributed by Alan Creutz.
+
+This document describes the function/features of the web-based SQM Visualizer, how to access each feature, and how to navigate around the Display. The SQM Visualizer works with data from a Unihedron SQM Device in the 'International Dark Sky Association (IDA) NSBM Community Standards for Reporting Skyglow Observations' [format](https://darksky.org/app/uploads/bsk-pdf-manager/47_SKYGLOW_DEFINITIONS.PDF) and files in the format output by the Unihedron software feature 'sun-moon-mw-clouds'.
+
+The SQM Visualizer can display “live data” being captured to a computer that both stores the captured data and runs the SQM Visualizer as a web application, in essentially real time.  In addition, without “real time” data, the SQM Visualizer will display historical data that may be loaded periodically (e.g., daily, monthly, or at some other frequently).  Thus, a user can transfer data from the station’s local computer to a central server via FTP, manual file transfer with USB sticks, or other mechanisms.
+
+The Sky Quality Meter (SQM) captures and records data on how dark the sky is; the SQM Visualizer presents this data for user information and analysis, providing a variety of perspectives.  This brief user guide explains the features of the SQM Visualizer and how to access them.  While there are many algorithms used to interpret the data to make it easily visualized by users, the SQM Visualizer is not intended for scientific research.  To that end, the actual data files can be accessed independently (with appropriate access to the computer storing the data) and analyzed by researchers and others interested in deeper perspectives, or using different assumptions and algorithms, than those incorporated in the SQM Visualizer.
+
 ## Main display
 
 Upon launching the SQM Visualizer, the user is presented with a graph showing the most recent set of SQM readings.  Depending on the time of day, the graph presents either data from “yesterday”, or data from today since evening civil twilight (when the sun is 12 degrees below the horizon).  (Prior to today’s civil twilight, the data shown is that for yesterday.}  The SQM Visualizer will update the graph in real time as new data is downloaded from the Unihedron device.
