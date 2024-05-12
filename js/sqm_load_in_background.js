@@ -116,11 +116,20 @@ class SQMLoadInBackground {
 		_.keys(readings.readings).forEach((datetime) => {
 			if ((readings.readings[datetime].date >= startDate) &&
 					(readings.readings[datetime].date <= endDate)) {
-				response.readings[datetime] = readings.readings[datetime];
+				response.readings[datetime] =
+					SQMLoadInBackground.#duplicate(readings.readings[datetime]);
 			}
 		});
 		response.type = 'best_nightly_readings';
 		return response;
+	}
+	
+	static #duplicate(reading) {
+		const result = {};
+		_.keys(reading).forEach((key) => {
+			result[key] = reading[key];
+		});
+		return result;
 	}
 	
 	// return all readings in the given time range for the given sqms
@@ -142,7 +151,9 @@ class SQMLoadInBackground {
 					_.keys(this.#dailyReadings[date][sqmId].readings).forEach((datetime) => {
 						if ((start <= datetime) && (end >= datetime)) {
 							response[sqmId].readings[datetime] =
-								this.#dailyReadings[date][sqmId].readings[datetime];
+								SQMLoadInBackground.#duplicate(
+									this.#dailyReadings[date][sqmId].readings[datetime]
+								);
 						}
 					});
 				});

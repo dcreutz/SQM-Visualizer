@@ -227,6 +227,8 @@ class SQMChart {
 		// let the charts know to update themselves
 		this.#barChart.addedToReadings(newReadingsSet);
 		this.#timeChart.addedToReadings(newReadingsSet);
+		this.redrawBarChart();
+		this.redrawTimeChart();
 	}
 	
 	/*	compute the start and end datetimes for the readings */

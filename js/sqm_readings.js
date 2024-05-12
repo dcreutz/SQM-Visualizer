@@ -215,7 +215,9 @@ class SQMReadings {
 	
 	/*	determine if we can filter based on mean r^2 */
 	#canFilterClouds(readings) {
-		return _.values(readings).some((reading) => reading.mean_r_squared != null);
+		// if mean_r_squared is set at all, even to null, it means the backend thinks it
+		// is performing r^2 computations (or that r^2 got pulled in from csv)
+		return _.values(readings).some((reading) => reading.mean_r_squared !== undefined);
 	}
 	
 	/*	filter a readings collection by mean r^2 */

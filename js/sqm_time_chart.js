@@ -437,6 +437,7 @@ class SQMTimeChart {
 	}
 	
 	#canFilterClouds(sqmId) {
+		// TODO: this must be broken
 		return this.#readingsSet.get(sqmId).canFilterClouds();
 	}
 	
