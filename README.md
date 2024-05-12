@@ -18,10 +18,6 @@ The SQM Visualizer software is free and open-source, provided as-is and licensed
 
 [Standalone version](https://dcreutz.com/sqm/sqm_visualizer_standalone/sqm_visualizer.html)
 
-## User guide
-
-The main features of the SQM Visualizer are documented in the [user guide](UserGuide.MD) contributed by Alan Creutz.
-
 ## Installation (Server)
 
 1. Download the SQM Visualizer from this [link](full_dist/sqm_visualizer_server.tar.gz) by choosing 'View raw' on that page.
@@ -61,6 +57,10 @@ The main features of the SQM Visualizer are documented in the [user guide](UserG
 3. Open sqm_visualizer.html in your browser.
 
 4. When prompted, select the data files on your computer (multiple files can be selected simultaneously).
+
+## User guide
+
+The main features of the SQM Visualizer are documented in the [user guide](UserGuide.MD) contributed by Alan Creutz.
 
 ## Data directory structure
 
