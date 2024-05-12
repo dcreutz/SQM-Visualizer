@@ -61,17 +61,13 @@ class SQMChart {
 		this.#sunMoonMWClouds = {};
 		if (sqmConfig.showCloudyByDefault && sqmConfig.showSunMoonCloudsByDefault) {
 			this.#showWhich = 'all';
-			this.#timeChart.showAllReadings();
-			this.#barChart.showAllReadings();
 		} else if (sqmConfig.showSunMoonCloudsByDefault) {
 			this.#showWhich = 'noCloudy';
-			this.#timeChart.showNoCloudyReadings();
-			this.#barChart.showNoCloudyReadings();
 		} else {
 			this.#showWhich = 'noSunMoonClouds';
-			this.#timeChart.showNoSunMoonCloudsReadings();
-			this.#barChart.showNoSunMoonCloudsReadings();
 		}
+		this.#timeChart.setShowReadings(this.#showWhich);
+		this.#barChart.setShowReadings(this.#showWhich);
 		this.#timeChartDatasets = {};
 		this.#barChartDatasets = {};
 		this.#activeSqmIds = sqmManager.initialActivatedSqms();
@@ -213,7 +209,7 @@ class SQMChart {
 			this.#barChart.addDataset(this.#barChartDatasets[sqmId]);
 		});
 		// the time chart shifts
-		this.#timeChart.shiftedReadings();
+		this.#timeChart.shiftedReadings(newReadingsSet);
 	}
 	
 	/*	add the data in this repsonse to the chart and recompute the times */
@@ -229,8 +225,8 @@ class SQMChart {
 		});
 		this.#computeTimes(request,this.#chartReadingsSet);
 		// let the charts know to update themselves
-		this.#barChart.addedToReadings();
-		this.#timeChart.addedToReadings();
+		this.#barChart.addedToReadings(newReadingsSet);
+		this.#timeChart.addedToReadings(newReadingsSet);
 	}
 	
 	/*	compute the start and end datetimes for the readings */
@@ -332,8 +328,6 @@ class SQMChart {
 				this.#barChart.showAllReadings();
 				break;
 		}
-		this.redrawTimeChart();
-		this.redrawBarChart();
 	}
 	
 	// toggle showing noSunMoonClouds readings
@@ -351,8 +345,6 @@ class SQMChart {
 				this.#barChart.showAllReadings();
 				break;
 		}
-		this.redrawTimeChart();
-		this.redrawBarChart();
 	}
 	
 	showingWhichy() {

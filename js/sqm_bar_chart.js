@@ -161,7 +161,7 @@ class SQMBarChart {
 		this.#datasets[dataset.sqmId] = dataset;
 	}
 	
-	addedToReadings() {
+	addedToReadings(newReadingsSet) {
 		// no need to anything since the logic is in the redraw method
 	}
 	
@@ -190,16 +190,23 @@ class SQMBarChart {
 		this.#chartObject.data.datasets = [];
 	}
 	
+	setShowReadings(which) {
+		this.#showWhich = which;
+	}
+	
 	showAllReadings() {
 		this.#showWhich = 'all';
+		this.redraw();
 	}
 	
 	showNoCloudyReadings() {
 		this.#showWhich = 'noCloudy';
+		this.redraw();
 	}
 	
 	showNoSunMoonCloudsReadings() {
 		this.#showWhich = 'noSunMoonClouds';
+		this.redraw();
 	}
 	
 	// compute the range and increment to use

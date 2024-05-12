@@ -261,12 +261,12 @@ class SQMTimeChart {
 	}
 	
 	/*	shift to the new data */
-	shiftedReadings() {
+	shiftedReadings(newReadingsSet) {
 		this.#handleNewData();
 	}
 	
 	/*	add the new data in place */
-	addedToReadings() {
+	addedToReadings(newReadingsSet) {
 		this.#handleNewData();
 	}
 	
@@ -350,8 +350,12 @@ class SQMTimeChart {
 	}
 	
 	// redraw the chart object
-	redraw() {
-		this.#chartObject.update();
+	redraw(animationDuration = null) {
+		if (animationDuration) {
+			this.#chartObject.update(animationDuration);
+		} else {
+			this.#chartObject.update();
+		}
 		var hasReadings = false;
 		var hasIndeterminateCloudiness = false;
 		var canFilterClouds = false;
@@ -436,18 +440,62 @@ class SQMTimeChart {
 		return this.#readingsSet.get(sqmId).canFilterClouds();
 	}
 	
+	setShowReadings(which) {
+		this.#showWhich = which;
+		this.#contextMenu.setShowingWhich(this.#showWhich);
+	}
+	
+	// remove readings outside the displayed time range
+	#removeReadingsOutsideTimeRange() {
+		const start = this.#chartObject.scales.x.min;
+		const end = this.#chartObject.scales.x.max;
+		this.#chartObject.data.datasets.forEach((dataset) => {
+			const newAllData = [];
+			_.keys(dataset.allData).forEach((key) => {
+				const datetime = dataset.allData[key].x;
+				if ((datetime >= start) && (datetime <= end)) {
+					newAllData.push(dataset.allData[key]);
+				}
+			});
+			const newNoCloudyData = [];
+			_.keys(dataset.noCloudyData).forEach((key) => {
+				const datetime = dataset.noCloudyData[key].x;
+				if ((datetime >= start) && (datetime <= end)) {
+					newNoCloudyData.push(dataset.noCloudyData[key]);
+				}
+			});
+			const newNoSunMoonCloudsData = [];
+			_.keys(dataset.noSunMoonCloudsData).forEach((key) => {
+				const datetime = dataset.noSunMoonCloudsData[key].x;
+				if ((datetime >= start) && (datetime <= end)) {
+					newNoSunMoonCloudsData.push(dataset.noSunMoonCloudsData[key]);
+				}
+			});
+		});
+	}
+	
 	// set the readings to show to be all
 	showAllReadings() {
+		if (this.#showWhich != 'all') {
+			// remove nonvisible readings and redraw so the animation will be smooth
+			this.#removeReadingsOutsideTimeRange();
+			this.#chartObject.update('none');
+		}
 		this.#showWhich = 'all';
 		this.#chartObject.data.datasets.forEach((dataset) => {
 			dataset.data = dataset.allData;
 		});
 		this.#chartObject.options.scales.x.ticks.source = this.#ticksSource;
 		this.#contextMenu.setShowingWhich(this.#showWhich);
+		this.redraw();
 	}
 	
 	// set the readings to show to be noCloudy
 	showNoCloudyReadings() {
+		if (this.#showWhich != 'noCloudy') {
+			this.#removeReadingsOutsideTimeRange();
+			this.#chartObject.update('none');
+		}
 		this.#showWhich = 'noCloudy';
 		this.#chartObject.data.datasets.forEach((dataset) => {
 			dataset.data = dataset.noCloudyData;
@@ -455,10 +503,15 @@ class SQMTimeChart {
 		// force ticks to auto to keep the graph's shape
 		this.#chartObject.options.scales.x.ticks.source = 'auto';
 		this.#contextMenu.setShowingWhich(this.#showWhich);
+		this.redraw();
 	}
 	
 	// set the readings to show to be noSunMoonClouds
 	showNoSunMoonCloudsReadings() {
+		if (this.#showWhich != 'noSunMoonClouds') {
+			this.#removeReadingsOutsideTimeRange();
+			this.#chartObject.update('none');
+		}
 		this.#showWhich = 'noSunMoonClouds';
 		this.#chartObject.data.datasets.forEach((dataset) => {
 			dataset.data = dataset.noSunMoonCloudsData;
@@ -466,6 +519,7 @@ class SQMTimeChart {
 		// force ticks to auto to keep the graph's shape
 		this.#chartObject.options.scales.x.ticks.source = 'auto';
 		this.#contextMenu.setShowingWhich(this.#showWhich);
+		this.redraw();
 	}
 	
 	// for chart color and click callbacks
