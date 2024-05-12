@@ -20,7 +20,7 @@ The SQM Visualizer software is free and open-source, provided as-is and licensed
 
 ## User guide
 
-The main features of the SQM Visualizer are documented in the [user guide](UserGuide.MD) contributed by Alan Creutz.
+Many features are documented in the [user guide](UserGuide.MD) contributed by Alan Creutz.
 
 ## Installation (Standalone)
 
