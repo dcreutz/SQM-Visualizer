@@ -6,32 +6,27 @@ Works with files in the 'International Dark Sky Association (IDA) NSBM Community
 
 The software can be run as a web application or standalone (no server).
 
-The server backend, included in the distribution files for the SQM Visualizer, is the [SQM Data Retriever](https://github.com/dcreutz/SQM_Data-Retriever).
-
 The SQM Visualizer software is licensed under the GNU Affero General Public License version 3, or (at your option) any later version.  The sofware was designed and developed by Darren Creutz.
 
 ## Examples
 
-[https://dcreutz.com/sqm/sqm_visualizer_examples/full_feature/index.php](Full feature set example)
+[Full feature set](https://dcreutz.com/sqm/sqm_visualizer_examples/full_feature/index.php)
 
-[https://dcreutz.com/sqm/sqm_visualizer_examples/two_datasets_no_images/index.php](Multiple datasets)
+[Multiple datasets](https://dcreutz.com/sqm/sqm_visualizer_examples/two_datasets_no_images/index.php)
 
-[https://dcreutz.com/sqm/sqm_visualizer_examples/no_cacheing/index.php](No cacheing)
+[No cacheing](https://dcreutz.com/sqm/sqm_visualizer_examples/no_cacheing/index.php)
 
-[https://dcreutz.com/sqm/sqm_visualizer_standalone/sqm_visualizer.html](Standalone version)
-
-
-[)https://dcreutz.com/sqm/ ](https://dcreutz.com/sqm/
+[Standalone version](https://dcreutz.com/sqm/sqm_visualizer_standalone/sqm_visualizer.html)
 
 ## Installation (Server version)
 
-1. [Download the SQM Visualizer](full_dist/sqm_visualizer_server.tar.gz)
+1. Download the SQM Visualizer from this [link](full_dist/sqm_visualizer_server.tar.gz) by choosing 'View raw' on that page.
 
 2. Extract the tar.gz file and place the contents in a directory on your web server.
 
 3. Copy (or symlink) your SQM data files into the data directory.
 
-4. [Recommended] Make the cache directory writeable by the web server user.  On shared hosting, this step usually isn't necessary; on a typical linux system, this means running chown to set the owner of the cache folder to www-data or www.
+4. [Recommended] Make the cache directory writeable by the web server user.  On shared hosting, this step usually isn't necessary; on a typical linux system, this means running chown to set the owner of the cache folder to www or www-data.
 
 5. [Optional] If you have a camera taking images of the sky, copy (or symlink) the images in to the images directory.  The directory structure expected is iamges/YYYY-MM/YYYY-MM-DD/image-file-name, see the [configuration instructions](config.MD) for more information.
 
@@ -51,11 +46,11 @@ The SQM Visualizer software is licensed under the GNU Affero General Public Lice
 	Elevation: <elevation>
 ```
 
-11. Navigate to http(s)://your-server/sqm-directory/index.php in your browser.  If cacheing is enabled, the first run make take some time to initially build the cache.
+11. Go to http(s)://your-server/sqm-directory/index.php in your browser.  If cacheing is enabled, the first run make take some time to initially build the cache.
 
 ## Installation (Standalone version)
 
-1. [Download the SQM Visualizer](full_dist/sqm_visualizer_standalone.tar.gz)
+1. Download the standalone SQM Visualizer from this [link](full_dist/sqm_visualizer_standalone.tar.gz) by choosing 'View raw' on that page.
 
 2. Extract the files.
 
@@ -89,6 +84,10 @@ Note that this script must be run as the same server user as the web server runs
 
 Optionally, a cron job can be configured to periodically update the cache.
 
+## Server backend
+
+The server backend, included in the distribution files for the SQM Visualizer, is the [SQM Data Retriever](https://github.com/dcreutz/SQM_Data-Retriever).
+
 ## Data collection
 
 The software works well in conjunction with [PySQM](https://github.com/mireianievas/PySQM) performing the actual data collection.  The simplest method of combining the two is to run PySQM creating monthly data files and simply replace the data directory in the visualizer folder on the webserver with a symlink to the location of the monthly data files.
@@ -96,4 +95,4 @@ The software works well in conjunction with [PySQM](https://github.com/mireianie
 ## Thanks
 
 Thanks to [chart.js](https://www.chartjs.org/), [chartjs-datefns-adapter](https://github.com/chartjs/chartjs-adapter-date-fns), [dateFns](https://date-fns.org/), [flatpickr](https://flatpickr.js.org/), [multiselect](https://github.com/miket-dev/multiselect), [papaparse](https://github.com/mholt/PapaParse), [suncalc](https://github.com/mourner/suncalc) and [suncalc-php](https://github.com/gregseth/suncalc-php).
-Thanks to Bill Kowalik for sharing his regression analysis code which ours is loosely based on.
+Thanks to Bill Kowalik for sharing his regression analysis code which the SQM Data Retriever's regression algorithm is loosely based on.

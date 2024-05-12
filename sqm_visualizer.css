@@ -650,7 +650,7 @@ input[type="file"] {
 	display: none;
 }
 #aboutpage {
-	position: absolute;
+	position: fixed;
 	top: 20%;
 	left: 50%;
 	transform: translate(-50%,0%);

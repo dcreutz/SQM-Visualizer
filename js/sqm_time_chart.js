@@ -651,8 +651,8 @@ class SQMTimeChart {
 		}
 		const sqmInfo = sqmManager.availableSqmInfos[sqmId];
 		if (sqmConfig.showLatitudeLongitude && sqmInfo.latitude) {
-			const latitude  = sqmInfo.latitude.toFixed(2);
-			const longitude = sqmInfo.longitude.toFixed(2)
+			const latitude  = Number.parseFloat(sqmInfo.latitude.toFixed(2));
+			const longitude = Number.parseFloat(sqmInfo.longitude.toFixed(2));
 			const latitudeStr  = latitude >= 0 ? latitude + "N" : Math.abs(latitude) + "S";
 			const longitudeStr = longitude >= 0 ? longitude + "E" : Math.abs(longitude) + "W";
 			$('legendtooltiplat').innerHTML = "Latitude " + latitudeStr;

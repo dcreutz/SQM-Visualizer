@@ -32,9 +32,9 @@ twilightType specifies which type of twilight to use.  Options are 'civil', 'nau
 
 ### Axis orientation
 
-By default, when showing all readings in a given night, the vertical axis is oriented with larger values at the bottom and when showing best nightly readings, the vertical axis is oriented with larger values at the top.
+By default, when showing all readings in a given night, the vertical axis is oriented with larger values at the bottom and when showing best nightly readings, the vertical axis is oriented with larger msas values at the top.
 
-nightlyAxisDescending and bestReadingAxisDescending control this behavior with true being larger MSAS values at the bottom and false putting them at the top.
+nightlyAxisDescending and bestReadingAxisDescending control this behavior with true being larger msas values at the bottom and false putting them at the top.
 
 ### Default display options
 
@@ -58,17 +58,17 @@ Set aboutLink to false to disable the About... context menu item.
 
 The visualizer can filter out readings determined to be bad data in two ways.  badDataCutoff specifies a value for which any reading below that will be discarded.  minReadingsPerNight is the minimum number of readings that must be taken during a nightly interval in order for the best reading of that night to be considered valid (otherwise that day will be skipped in best nightly displays).
 
-The visualizer can also filter by cloudiness (mean r^2) and sun and moon information.  Setting showCloudyByDefault to false will have it not display cloudy data (unless the user overrides this from the context menu) and setting showSunMoonCloudsByDefault to false will filter on all three.
+The visualizer can also filter by cloudiness (mean $r^2$) and sun and moon information.  Setting showCloudyByDefault to false will have it not display cloudy data (unless the user overrides this from the context menu) and setting showSunMoonCloudsByDefault to false will filter on all three.
 
 ### Colorization (sun, moon and clouds)
 
 If colorizeData is true, the visualizer will use color and transparency to display information in the chart.
 
-Cloudiness is indicated by transparency; readings with mean r^2 below cloudyCutoff will be opqaue and those over cloudyMax at 20% opacity with readings in between having opacity scaled linearly.
+Cloudiness is indicated by transparency; readings with mean $r^2$ below cloudyCutoff will be opqaue and those over cloudyMax at 20% opacity with readings in between having opacity scaled linearly.
 
 Sun altitude is indicated by hues of orange and sunAltitudeCutoffs specify the three altitudes (in degrees) at which the hues should be used.
 
-Moon altitude and illumination are indicated by black to white with white meaning the moon is in the sky and has significant illumination.  moonAltitudeCutoffs indicate values (in degrees) below which the moon should be considered to not affect the readings (regardless of its illumination) and above which the moon is considered fully in the sky.  moonIlluminationCutoff gives the illumination value above which the moon is considered to be affecting the readings.
+Moon altitude and illumination are indicated by black to white with white meaning the moon is in the sky and has significant illumination.  moonAltitudeCutoffs indicate values (in degrees) below which the moon should be considered to not affect the readings (regardless of its illumination) and above which the moon is considered fully in the sky.  moonIlluminationCutoff gives the illumination value above which the moon is considered to be affecting the readings.  The illumination value is computed as the product of the lunar illumination (fraction of lunar surface area illuminated) times the fraction of the way the moon is between the alitude cutoffs.
 
 hoverTextSun, hoverTextMoon and hoverTextR2 determine whether the values should be displayed when the user hovers over a data point.
 
@@ -82,7 +82,7 @@ Any or all of these can be set to 0 or null to disable that polling.
 
 The visualizer can, after loading the initial query, begin loading all available data from the server in the background and cache it in the web browser memory to dramatically speed up response time.  Set loadInBackground to false to disable this feature.  loadInBackgroundUnit specifies what time interval to load data from; options are 'month' and 'day'.
 
-The downside to the background loading feature is that the server load is higher and more bandwidth is used; the upside is dramatically enhanced performance.  On shared hosting with limited bandwidth, especially with small data sets, disabling this feature is recommended.
+The downside to the background loading feature is that the server load is higher and more bandwidth is used; the upside is dramatically enhanced performance.
 
 ### Enabled and default SQMs
 
@@ -102,7 +102,7 @@ If forceTicksFromData is set to true, the chart will always use only actual data
 
 The visualizer displays dates and times using the configuration options controlsDatetimeFormats (for input controls such as the nightly date picker), displayDatetimeFormats (for e.g. the title of the chart) and filenameDatetimeFormats (for the file name to use if the user asks to save the chart as an image).  All three variables must be a key value object with keys datetime, date and month and values being [valid dateFns formats](https://date-fns.org/v1.30.1/docs/format).
 
-Due to third party coding choices, chartDateFormat and chartTimeFormat, which specify how the labels in the chart should be displayed, must be [valid chartjs formats](https://www.chartjs.org/docs/latest/axes/cartesian/time.html).
+Due to third party coding choices, chartDateFormat and chartTimeFormat, which specify how the labels in the chart should be displayed, must be [valid chartjs formats](https://www.chartjs.org/docs/latest/axes/cartesian/time.html), which unfortunately are not the same as those of dateFns.
 
 ### Color scheme
 
@@ -115,7 +115,7 @@ This section should be ignored unless you installed the SQM Data Retriever befor
 If, for some reason, you have installed the SQM Data Retriever in a nonstandard location, fetchURL
 specifies the URL of the sqm.php file for the retriever.
 
-If you are using a different backend than the SQM Data Retriever (of which the author is unaware of any existing), fetchUrl can be set to their files.
+If you are using a different backend than the SQM Data Retriever (of which the author is unaware of any existing), fetchUrl can be set to its url.
 
 ### Server date and time formats
 
