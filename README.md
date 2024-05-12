@@ -28,7 +28,7 @@ Many features are documented in the [user guide](UserGuide.MD) contributed by Al
 
 2. Extract the files.
 
-3. Open sqm_visualizer.html in your browser.
+3. Open sqm_visualizer.html in your browser (most likely this just means double click on the file, alternatively open a new tab/window in your browser and drag the file into it).
 
 4. When prompted, select the data files on your computer (multiple files can be selected simultaneously).
 
