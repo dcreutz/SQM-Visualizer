@@ -42,7 +42,7 @@ Many features are documented in the [user guide](UserGuide.MD) contributed by Al
 
 4. [Recommended] Make the cache directory writeable by the web server user.  On shared hosting, this step usually isn't necessary; on a typical linux system, this means running chown to set the owner of the cache folder to www or www-data.
 
-5. [Optional] If you have a camera taking images of the sky, copy (or symlink) the images in to the images directory.  The directory structure expected is images/YYYY-MM/YYYY-MM-DD/image-file-name, see the [configuration instructions](config.MD) for more information.
+5. [Optional] If you have a camera taking images of the sky, copy (or symlink) the images in to the images directory.  The directory structure expected is images/YYYY-MM/YYYY-MM-DD/image-file-name, see the [configuration instructions](https://github.com/dcreutz/SQM-Data-Retriever/blob/main/config.MD) for more information.
 
 6. [Optional] If you have images and would like the backend to automatically create thumbnails, make the resized_images directory writeable by the web server user.
 
@@ -94,11 +94,11 @@ Optionally, a cron job can be configured to periodically update the cache using 
 
 ## Large numbers of SQMs
 
-If you have data files for more than about five SQMs, you may wish to take advantage of the [configuration option](config.MD) to only enable some of them and have a dropdown list allowing the user to select which subset are displayed in the chart.
+If you have data files for more than about five SQMs, you may wish to take advantage of the configuration option enabledSqms (see the [configuration instructions](config.MD)) to only enable some of them and have a dropdown list allowing the user to select which subset are displayed in the chart.
 
 ## Server backend
 
-The server backend, included in the distribution files for the SQM Visualizer, is the [SQM Data Retriever](https://github.com/dcreutz/SQM_Data-Retriever).  While developed entirely to process data files for the SQM Visualizer, the SQM Data Retriever is a standalone server application with a full API.
+The server backend, included in the distribution files for the SQM Visualizer, is the [SQM Data Retriever](https://github.com/dcreutz/SQM_Data-Retriever).  While developed to process data files for the SQM Visualizer, the SQM Data Retriever is a standalone server application with a full API.
 
 ## Data collection
 
