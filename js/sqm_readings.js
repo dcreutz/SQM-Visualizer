@@ -53,7 +53,7 @@ class SQMReadings {
 		}
 		this.#canFilter = this.#canFilterClouds(this.readings);
 		if (this.#canFilter) {
-			// if we can filter, make sure all readings have a mean r^2 value
+			// if we can filter, update nightly readings to use first non-null value
 			this.#fixMeanR2(this.readings,this.#type);
 		}
 		this.#addDatetimeAttributes(this.readings);
@@ -163,24 +163,42 @@ class SQMReadings {
 		type: 'all_readings' or 'best_nightly_readings' */
 	#fixMeanR2 (readings,type) {
 		if (type == 'all_readings') {
-			const datetimes = _.keys(readings).sort();
-			const firstNonNullIndex =
-				datetimes.find((datetime) => readings[datetime].mean_r_squared != null);
-			if (firstNonNullIndex) {
-				const firstNonNullR2 = readings[firstNonNullIndex].mean_r_squared;
-				const lastNonNullIndex =
-					datetimes.toReversed()
-						.find((datetime) => readings[datetime].mean_r_squared != null);
-				const lastNonNullR2 = readings[lastNonNullIndex].mean_r_squared;
-				datetimes.forEach((datetime) => {
-					if (datetime < firstNonNullIndex) {
-						readings[datetime].mean_r_squared = firstNonNullR2;
-					}
-					if (datetime > lastNonNullIndex) {
-						readings[datetime].mean_r_squared = lastNonNullR2;
-					}
-				});
-			}
+			const allDatetimes = _.keys(readings);
+			// split into nights
+			SQMDate.daysBetween(
+				SQMDate.nightOf(this.startDatetime),
+				SQMDate.nightOf(this.endDatetime)
+			).forEach((dateStr) => {
+				// a night is noon to noon
+				const dateObj = SQMDate.parseServerDate(dateStr);
+				dateObj.setHours(12,0,0,0);
+				const thisDatetime = SQMDate.formatServerDatetime(dateObj);
+				const nextDatetime = SQMDate.formatServerDatetime(dateFns.addDays(dateObj,1));
+				// figure out which datetimes are in this noon to noon range
+				const datetimes = allDatetimes.filter((datetime) =>
+					(datetime >= thisDatetime) && (datetime < nextDatetime)
+				);
+				// find the first non-null mean r^2
+				const firstNonNullIndex =
+					datetimes.find((datetime) => readings[datetime].mean_r_squared != null);
+				if (firstNonNullIndex) {
+					// if there is one, get the first value and last value
+					const firstNonNullR2 = readings[firstNonNullIndex].mean_r_squared;
+					const lastNonNullIndex =
+						datetimes.toReversed()
+							.find((datetime) => readings[datetime].mean_r_squared != null);
+					const lastNonNullR2 = readings[lastNonNullIndex].mean_r_squared;
+					// replace null r^2 values with first or last
+					datetimes.forEach((datetime) => {
+						if (datetime < firstNonNullIndex) {
+							readings[datetime].mean_r_squared = firstNonNullR2;
+						}
+						if (datetime > lastNonNullIndex) {
+							readings[datetime].mean_r_squared = lastNonNullR2;
+						}
+					});
+				}
+			});
 		}
 	}
 	
