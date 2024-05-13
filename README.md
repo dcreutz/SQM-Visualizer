@@ -90,7 +90,7 @@ Note that this script must be run as the same server user as the web server runs
 
 Optionally, a cron job can be configured to periodically update the cache using a cron.d file (or crontab entry) similar to
 
-```5 * * * * www-data cd /var/www/html; /var/www/html/bin/update_cache_cli.php > /dev/null 2>&1```
+```5 * * * * www-data cd /var/www/html; ./bin/update_cache_cli.php > /dev/null 2>&1```
 
 ## Large numbers of SQMs
 
