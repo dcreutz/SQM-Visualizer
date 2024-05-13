@@ -247,7 +247,7 @@ document.addEventListener("DOMContentLoaded",function(event) {elm.style.display=
 		<div class="close" id="closeabout"></div>
 		<h2 class="abouttitle">SQM Visualizer</h2>
 		<h4>&copy; 2024 Darren Creutz</h4>
-		<a class="abouthref" href="https://github.com/dcreutz/SQM-Visualizer" target="_blank">github.com/dcreutz/SQM-Visualizer</a>
+		<a class="abouthref" href="https://github.com/dcreutz/SQM-Visualizer/blob/main/README.md" target="_blank">github.com/dcreutz/SQM-Visualizer</a>
 	</div>
 </div><div class="addfileinputcover" id="addfileinputcover">
 	<div class="addfileinput" id="addfileinput">

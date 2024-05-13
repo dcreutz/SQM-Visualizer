@@ -1,4 +1,4 @@
-### SQM Visualizer Configuration
+# SQM Visualizer Configuration
 
 The SQM Visualizer can be configured by editing the file config.js in the same directory as index.php.  The backend can be configured by editing the file config.php in the same directory.
 
@@ -9,6 +9,12 @@ All options, and in fact the config.js file itself, are optional and will defaul
 The config.js and config.php files for the examples are located in the examples directory of the source tree.
 
 ## config.js
+
+```
+sqmConfig = {
+	<option>: <value>,
+};
+```
 
 config.js defines the sqmConfig object whose properties configure how the SQM Visualizer behaves.
 
@@ -28,7 +34,7 @@ The title property defines the page (window) title.  The default is 'SQM Visuali
 
 ```initialQuery: 'most recent' | 'tonight' | 'six months' | 'all time',```
 
-initialQuery defines what request to make when the application is first accessed.  Valid options are 'most recent' (the default), 'tonight', 'six months' or 'all time'.
+initialQuery defines what request to make when the application is initially accessed by a user.  Valid options are 'most recent' (the default), 'tonight', 'six months' or 'all time'.
 
 Most recent gives the most recent night during which readings were taken; tonight gives the most recent night regardless of whether readings were taken.
 
@@ -36,7 +42,7 @@ Most recent gives the most recent night during which readings were taken; tonigh
 
 ```twilightType: 'civil' | 'nautical' | 'astronomical',```
 
-twilightType specifies which type of twilight to use.  Options are 'civil', 'nautical' and 'astronomical'.
+twilightType specifies which type of twilight to use.  Options are 'civil', 'nautical' and 'astronomical'.  Default is 'nautical'.
 
 ### Axis orientation
 
@@ -57,6 +63,7 @@ showKey: true | false,
 showBestReading: true | false,
 showLatestReading: true | false,
 showStats: true | false,
+showBinning: true | false,
 ```
 
 Various properties of the display can be configured to show or not by default (the user may use the right-click menu to change these settings on a per-site-visit basis).
@@ -99,6 +106,7 @@ The visualizer can also filter by cloudiness (mean $r^2$) and sun and moon infor
 ```
 colorizeData: true | false,
 cloudyCutoff: <number>,
+cloudyMax: <number>,
 sunAltitudeCutoffs: [ <number>, <number>, <number> ],
 moonAltitudeCutoffs: [ <number>, <number> ],
 moonIlluminationCutoff: <number>,
@@ -143,14 +151,13 @@ The downside to the background loading feature is that the server load is higher
 enabledSqms: true | [ <string>, ... ],
 showSqmsDropdown: true | false | null,
 defaultSqms: null | [ <string>, ... ],
-
 ```
 
 These options can (and should) be ignored if working with only one SQM station's data.
 
 Set enabledSqms to true to enable all SQMs in the data directory (enable meaning their data is loaded); alternatively, set it to an array of subdirectory names to enable only those sqms.
 
-Set showSqmsDropdown to force the visualizer to present a dropdown list of the SQMs which the user can use to enable and disable them.  Set showSqmsDropdown to null (the default) to show the dropdown only if enabledSqms is not set to true.
+Set showSqmsDropdown to force the visualizer to present a dropdown list of the SQMs which the user can use to enable and disable them.  Set showSqmsDropdown to null (the default) to show the dropdown only if enabledSqms is not set to true (this is the default behavior as it shows the dropdown if enabled is set to an array).
 
 Set defaultSqms to the name of an SQM or an array of names (names meaning the names of the subdirectories in the data directory) to make their data visible by default (and all others' data invisible by default).
 
@@ -193,7 +200,9 @@ If you are using a different backend than the SQM Data Retriever (of which the a
 
 ### Server date and time formats
 
-```serverDatetimeFormats: { datetime: <string>, time: <string> date: <string>, month: <string> },```
+```
+serverDatetimeFormats: { datetime: <string>, time: <string> date: <string>, month: <string> },
+```
 
 This section should be ignored unless you are using a different backend than the SQM Data Retriever (of which the author is unaware of any existing).
 

@@ -7,6 +7,11 @@
 //	Creates the standalone.php file meant for distribution
 ?>
 <?php include('php/head.php'); ?>
+
+<!--
+<?php include("build/LICENSES");
+?>
+-->
 <style type="text/css">
 <?php include("contrib/flatpickr/flatpickr.min.css"); ?>
 </style>

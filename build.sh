@@ -54,7 +54,6 @@ cssmin build/sqm_visualizer.css > build/sqm_visualizer.min.css
 
 #	build the actual php files intended to be deployed
 php index_with_minification.php > build/index_with_minification.php
-php standalone.php > build/standalone.html
 
 # copy our license into a combined license file
 rm -f build/LICENSES
@@ -83,9 +82,9 @@ done
 cd ..
 
 #	create the single page/standalone php file for distribution
-mkdir -p dist/sqm_visualizer.standalone
-cp build/standalone.html dist/sqm_visualizer.standalone/sqm_visualizer.html
-cp build/LICENSES dist/sqm_visualizer.standalone/LICENSES
+php standalone.php > build/standalone.html
+mkdir -p dist
+cp build/standalone.html dist/sqm_visualizer.html
 
 #	create the index.php and js and css files for deployment
 mkdir -p dist/sqm_visualizer.distrib

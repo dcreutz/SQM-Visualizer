@@ -8,6 +8,8 @@ The software can be run as a web application or standalone (no server).
 
 The SQM Visualizer software is free and open-source, provided as-is and licensed under the GNU Affero General Public License version 3, or (at your option) any later version.  The sofware was designed and developed by Darren Creutz.
 
+While absolutely not mandatory, if you install the software on a publicly accessible website and/or find it useful, the author would appreciate a quick email [dcreutz@dcreutz.com](mailto:dcreutz@dcreutz.com?subject=SQMVisualizer) letting him know.
+
 ## Examples
 
 [Full feature set](https://dcreutz.com/sqm/sqm_visualizer_examples/full_feature/index.php)
@@ -24,13 +26,11 @@ Many features are documented in the [user guide](UserGuide.MD) contributed by Al
 
 ## Installation (Standalone)
 
-1. [Download the standalone SQM Visualizer](https://github.com/dcreutz/SQM-Visualizer/releases/download/v0.1alpha/sqm_visualizer_standalone.tar.gz).
+1. [Download the standalone SQM Visualizer](https://github.com/dcreutz/SQM-Visualizer/releases/download/v0.1alpha/sqm_visualizer_standalone.tar.gz) and extract the zip file.
 
-2. Extract the files.
+2. Open sqm_visualizer.html in your browser (most likely this just means double click on the file, alternatively open a new tab/window in your browser and drag the file into it).
 
-3. Open sqm_visualizer.html in your browser (most likely this just means double click on the file, alternatively open a new tab/window in your browser and drag the file into it).
-
-4. When prompted, select the data files on your computer (multiple files can be selected simultaneously).
+3. When prompted, select the data files on your computer (multiple files can be selected simultaneously).
 
 ## Installation (Server)
 
