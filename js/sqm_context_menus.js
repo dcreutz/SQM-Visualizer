@@ -193,7 +193,7 @@ class SQMTimeContextMenu extends SQMContextMenu {
 			SQMTimeContextMenu.#setMax.bind(null,this),
 			'limax'
 		);
-		this._addMenuItem("Reverse Y axis",SQMTimeContextMenu.#flipChart.bind(null,this));
+		this._addMenuItem("Reverse vertical axis",SQMTimeContextMenu.#flipChart.bind(null,this));
 		this.#legend = this._addMenuItem(
 			'Hide legend',SQMTimeContextMenu.#showHideLegend.bind(null,this),'showhidelegend'
 		);
