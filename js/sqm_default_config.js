@@ -9,7 +9,7 @@
 	if not, we use what is here */
 
 const sqmDefaultConfig = {
-	userErrorMessage: "Something went wrong retrieving requested data, try reloading the page.\n\nIf this is the first run, this is likely due to the cache still being built.\n\nIf the problem persists, try clearing the cache.",
+	userErrorMessage: "Something went wrong retrieving requested data, try reloading the page.",
 	title: "SQM Visualizer",
 	enabledSqms: true,
 	showSqmsDropdown: null,

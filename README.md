@@ -42,7 +42,7 @@ Many features are documented in the [user guide](UserGuide.MD) contributed by Al
 
 4. [Recommended] Make the cache directory writeable by the web server user.  On shared hosting, this step usually isn't necessary; on a typical linux system, this means running chown to set the owner of the cache folder to www or www-data.
 
-5. [Optional] If you have a camera taking images of the sky, copy (or symlink) the images in to the images directory.  The directory structure expected is iamges/YYYY-MM/YYYY-MM-DD/image-file-name, see the [configuration instructions](config.MD) for more information.
+5. [Optional] If you have a camera taking images of the sky, copy (or symlink) the images in to the images directory.  The directory structure expected is images/YYYY-MM/YYYY-MM-DD/image-file-name, see the [configuration instructions](config.MD) for more information.
 
 6. [Optional] If you have images and would like the backend to automatically create thumbnails, make the resized_images directory writeable by the web server user.
 
@@ -86,11 +86,11 @@ Command line script to update the cache.  This script can only be run when in th
 
 When working with large datasets, and most especially when resizing images, this script should be used prior to the first browser call to the backend.
 
-Note that this script must be run as the same server user as the web server runs as or after running it, the cache must be manually set to be readable and writeable by the web user.
+Note that this script must be run as the same server user as the web server runs as, or after running it, the cache must be manually set to be writeable by the web user.
 
 Optionally, a cron job can be configured to periodically update the cache using a cron.d file (or crontab entry) similar to
 
-```5 * * * * www-data cd /var/www/html/sqm; /var/www/html/sqm/bin/update_cache_cli.php > /dev/null 2>&1```
+```5 * * * * www-data cd /var/www/html; /var/www/html/bin/update_cache_cli.php > /dev/null 2>&1```
 
 ## Large numbers of SQMs
 
@@ -98,11 +98,11 @@ If you have data files for more than about five SQMs, you may wish to take advan
 
 ## Server backend
 
-The server backend, included in the distribution files for the SQM Visualizer, is the [SQM Data Retriever](https://github.com/dcreutz/SQM_Data-Retriever).
+The server backend, included in the distribution files for the SQM Visualizer, is the [SQM Data Retriever](https://github.com/dcreutz/SQM_Data-Retriever).  While developed entirely to process data files for the SQM Visualizer, the SQM Data Retriever is a standalone server application with a full API.
 
 ## Data collection
 
-The software works well in conjunction with [PySQM](https://github.com/mireianievas/PySQM) performing the actual data collection.  The simplest method of combining the two is to run PySQM creating monthly data files and simply replace the data directory in the visualizer folder on the webserver with a symlink to the location of the monthly data files.
+The software works well in conjunction with [PySQM](https://github.com/mireianievas/PySQM) performing the actual data collection.  The simplest method of combining the two is to run PySQM creating monthly data files and symlink the folder containing the monthly data files to the data directory in the visualizer folder.
 
 ## Acknowledgements
 
