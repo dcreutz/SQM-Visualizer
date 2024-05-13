@@ -51,7 +51,7 @@ Clicking with the right mouse button (press and hold on touch devices) anywhere 
 * Axis maximum – which sets the maximum SQM reading to be included on the vertical axis
 * Reverse vertical axis – which reverses the direction of the vertical axis
 * Hide/show legend – which removes the legend below the graph showing the color codes and geographical data for the (possibly multiple) SQM stations displayed on the graph
-* Hide/show key – which removes the key below the graph legend the colorization based on sun, moon and clouds
+* Hide/show key – which removes the key below the graph legend describing the colorization based on sun, moon and clouds
 * Add local data – which allows the user to load a separate data file of SQM data not established as a standard station; for each dataset uploaded, the name of the station is Uploaded, Uploaded2, etc.  (note that this data does not persist past the current session of the SQM Visualizer)
 * View data files – which allows the user to view the raw data files
 * About... – which shows information about the SQM Visualizer
@@ -60,7 +60,7 @@ Note that on mobile devices with small screens, some options are disabled in ord
 
 ## Detailed information for a reading
 
-If you hover over a specific data point, a tooltip appears that displays the following information related to the specific data point:
+If you hover over a specific data point (click on a data point on touch devices), information appears related to the specific data point:
 
 * Date/time of the Reading
 * Moon status at the time of the reading
