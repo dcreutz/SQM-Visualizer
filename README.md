@@ -42,13 +42,13 @@ Many features are documented in the [user guide](UserGuide.MD) contributed by Al
 
 4. [Recommended] Make the cache directory writeable by the web server user.  On shared hosting, this step usually isn't necessary; on a typical linux system, this means running chown to set the owner of the cache folder to www or www-data.
 
-5. [Optional] If you have a camera taking images of the sky, copy (or symlink) the images in to the images directory.  The directory structure expected is images/YYYY-MM/YYYY-MM-DD/image-file-name, see the [configuration instructions](https://github.com/dcreutz/SQM-Data-Retriever/blob/main/config.MD) for more information.
+5. [Optional] If you have a camera taking images of the sky, copy (or symlink) the images in to the images directory.  The directory structure expected is images/YYYY-MM/YYYY-MM-DD/image-file-name, see the [SQM Data Retriever configuration instructions](https://github.com/dcreutz/SQM-Data-Retriever/blob/main/config.MD) for more information.
 
 6. [Optional] If you have images and would like the backend to automatically create thumbnails, make the resized_images directory writeable by the web server user.
 
-7. [Optional] Edit config.js to customize your installation.  See the [configuration instructions](config.MD) for more information.
+7. [Optional] Edit config.js to customize your installation.  See the [SQM Visualizer configuration instructions](config.MD) for more information.
 
-8. [Optional] Edit config.php to customize your installation.  See the [configuration instructions](config.MD) for more information.
+8. [Optional] Edit config.php to customize your installation.  See the [SQM Data Retriever configuration instructions](config.MD) for more information.
 
 9. [Optional] If using a large dataset, particularly if regression analysis and images are involved, run the included command line script bin/update_cache_cli.php (see below).
 
