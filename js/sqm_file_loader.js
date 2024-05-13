@@ -33,7 +33,7 @@ class SQMFileLoader {
 			const nextFile = files.pop();
 			return SQMFileLoader.#readFile(nextFile)
 			.then((text) => {
-				return SQMFileLoader.loadFiles(files,text + theText);
+				return SQMFileLoader.#loadFiles(files,text + theText);
 			});
 		}
 	}
