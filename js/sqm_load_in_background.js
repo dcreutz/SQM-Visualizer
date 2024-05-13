@@ -116,6 +116,7 @@ class SQMLoadInBackground {
 		_.keys(readings.readings).forEach((datetime) => {
 			if ((readings.readings[datetime].date >= startDate) &&
 					(readings.readings[datetime].date <= endDate)) {
+				// duplicate the reading since the requester may modify the response
 				response.readings[datetime] =
 					SQMLoadInBackground.#duplicate(readings.readings[datetime]);
 			}
@@ -125,11 +126,7 @@ class SQMLoadInBackground {
 	}
 	
 	static #duplicate(reading) {
-		const result = {};
-		_.keys(reading).forEach((key) => {
-			result[key] = reading[key];
-		});
-		return result;
+		return JSON.parse(JSON.stringify(reading));
 	}
 	
 	// return all readings in the given time range for the given sqms
