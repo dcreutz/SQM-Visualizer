@@ -49,10 +49,10 @@ Clicking with the right mouse button (press and hold on touch devices) anywhere 
 * Exclude/include clouds data – which removes those data points where the algorithms of the SQM Visualizer evaluates that the data are influenced by clouds (but does not remove sun or moon influenced data)
 * Axis minimum – which sets the minimum SQM reading to be included on the vertical axis
 * Axis maximum – which sets the maximum SQM reading to be included on the vertical axis
-* Reverse Y axis – which reverses the direction of the vertical axis
+* Reverse vertical axis – which reverses the direction of the vertical axis
 * Hide/show legend – which removes the legend below the graph showing the color codes and geographical data for the (possibly multiple) SQM stations displayed on the graph
 * Hide/show key – which removes the key below the graph legend the colorization based on sun, moon and clouds
-* Add local data – which allows the user to load a separate data file of SQM data not established as a standard station; for each dataset uploaded, the name of the station is Upload1, Upload2, etc.  (note that this data does not persist past the current session of the SQM Visualizer)
+* Add local data – which allows the user to load a separate data file of SQM data not established as a standard station; for each dataset uploaded, the name of the station is Uploaded, Uploaded2, etc.  (note that this data does not persist past the current session of the SQM Visualizer)
 * View data files – which allows the user to view the raw data files
 * About... – which shows information about the SQM Visualizer
 
