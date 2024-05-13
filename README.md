@@ -8,7 +8,7 @@ The software can be run as a web application or standalone (no server).
 
 The SQM Visualizer software is free and open-source, provided as-is and licensed under the GNU Affero General Public License version 3, or (at your option) any later version.  The sofware was designed and developed by Darren Creutz.
 
-While absolutely not mandatory, if you install the software on a publicly accessible website and/or find it useful, the author would appreciate a quick email [dcreutz@dcreutz.com](mailto:dcreutz@dcreutz.com?subject=SQMVisualizer) letting him know.
+While absolutely not mandatory, if you install the software on a public website and/or find it useful, the author would appreciate a quick email [dcreutz@dcreutz.com](mailto:dcreutz@dcreutz.com?subject=SQMVisualizer) letting him know.
 
 ## Examples
 
