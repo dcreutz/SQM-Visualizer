@@ -2,7 +2,7 @@
 
 The SQM Visualizer can be configured by editing the file config.js in the same directory as index.php.  The backend can be configured by editing the file config.php in the same directory.
 
-The standalone version does not have configuration options (though in principle one could edit the html file to add any configuration options desired to the sqmConfig object defined in it).
+The standalone version does not have configuration options.
 
 All options, and in fact the config.js file itself, are optional and will default sensibly if not specified.
 
@@ -51,9 +51,9 @@ nightlyAxisDescending: true | false,
 bestReadingAxisDescending: true | false,
 ```
 
-By default, when showing all readings in a given night, the vertical axis is oriented with larger values at the bottom and when showing best nightly readings, the vertical axis is oriented with larger msas values at the top.
+By default, when showing all readings in a given night, the vertical axis is oriented with larger msas values at the bottom and when showing best nightly readings, the vertical axis is oriented with larger msas values at the top.
 
-nightlyAxisDescending and bestReadingAxisDescending control this behavior with true being larger msas values at the bottom and false putting them at the top.
+nightlyAxisDescending and bestReadingAxisDescending control this behavior with true putting larger msas values at the bottom and false putting them at the top.
 
 ### Default display options
 
@@ -74,7 +74,9 @@ showLegend determines if the legend (list of all SQMs) should show at the bottom
 
 ```showLatitudeLongitude: true | false,```
 
-showLatitudeLongitude determines whether the latitude and longitude of the SQM stations should be displayed when the legend is hovered over.  For the privacy conscious, if the station is located at a personal property then this can be set to false.
+showLatitudeLongitude determines whether the latitude and longitude of the SQM stations should be displayed when the legend is hovered over (equivalently, clicked on when the user is on a touch screen device).
+
+For the privacy conscious, if the station is located at a personal property then this can be set to false.
 
 ### Data files
 
@@ -97,9 +99,9 @@ showCloudyByDefault: true | false,
 showSunMoonCloudsByDefault: true | false,
 ```
 
-The visualizer can filter out readings determined to be bad data in two ways.  badDataCutoff specifies a value for which any reading below that will be discarded.  minReadingsPerNight is the minimum number of readings that must be taken during a nightly interval in order for the best reading of that night to be considered valid (otherwise that day will be skipped in best nightly displays).
+The visualizer will ignore readings determined to be bad data in two ways.  badDataCutoff specifies a value for which any reading below that will be discarded.  minReadingsPerNight is the minimum number of readings that must be taken during a nightly interval in order for the best reading of that night to be considered valid (otherwise that day will be skipped in best nightly displays).
 
-The visualizer can also filter by cloudiness (mean $r^2$) and sun and moon information.  Setting showCloudyByDefault to false will have it not display cloudy data (unless the user overrides this from the context menu) and setting showSunMoonCloudsByDefault to false will filter on all three.
+The visualizer can also filter by cloudiness (mean $r^2$) and sun and moon information.  The end user can control the filtering from the context menu.  Setting showCloudyByDefault to false will have it not display cloudy data (unless the user overrides this from the context menu) and setting showSunMoonCloudsByDefault to false will filter on all three.
 
 ### Colorization (sun, moon and clouds)
 
@@ -121,9 +123,11 @@ Cloudiness is indicated by transparency; readings with mean $r^2$ below cloudyCu
 
 Sun altitude is indicated by hues of orange and sunAltitudeCutoffs specify the three altitudes (in degrees) at which the hues should be used.
 
-Moon altitude and illumination are indicated by black to white with white meaning the moon is in the sky and has significant illumination.  moonAltitudeCutoffs indicate values (in degrees) below which the moon should be considered to not affect the readings (regardless of its illumination) and above which the moon is considered fully in the sky.  moonIlluminationCutoff gives the illumination value above which the moon is considered to be affecting the readings.  The illumination value is computed as the product of the lunar illumination (fraction of lunar surface area illuminated) times the fraction of the way the moon is between the alitude cutoffs.
+Moon altitude and illumination are indicated by black to white with white meaning the moon is in the sky and has significant illumination while black means the moon is either well below the horizon or is effectively new.
 
-hoverTextSun, hoverTextMoon and hoverTextR2 determine whether the values should be displayed when the user hovers over a data point.
+moonAltitudeCutoffs indicate values (in degrees) below which the moon should be considered to not affect the readings (regardless of its illumination) and above which the moon is considered fully in the sky.  moonIlluminationCutoff gives the illumination value above which the moon is considered to be affecting the readings.  The illumination value is computed as the product of the lunar illumination (fraction of lunar surface area illuminated) times the fraction of the way the moon is between the alitude cutoffs.
+
+hoverTextSun, hoverTextMoon and hoverTextR2 determine whether the sun, moon and mean $r^2$ values should be displayed when the user hovers over a data point (equivalently, clicks on a data point when using a touch screen device).
 
 ### Polling for new data
 
@@ -135,13 +139,13 @@ infoPollingInterval: <number>,
 
 The visualizer can poll the server for new and updated data to allow real-time display.  pollingInterval is the time interval in minutes after which the currently displayed data should be checked for updates; latestPollingInterval is the time interval in minutes to check for new readings; and infoPollingInterval is the time interval in minnutes to check for added and removed sqm stations.
 
-Any or all of these can be set to 0 or null to disable that polling.
+Any or all of these can be set to 0 or null to disable polling.
 
 ### Load data in background
 
 ```loadInBackground: true | false,```
 
-The visualizer can, after loading the initial query, begin loading all available data from the server in the background and cache it in the web browser memory to dramatically speed up response time.  Set loadInBackground to false to disable this feature.  loadInBackgroundUnit specifies what time interval to load data from; options are 'month' and 'day'.
+The visualizer can, after loading the initial query, begin loading all available data from the server in the background and cache it in the browser's memory to speed up response time.  Set loadInBackground to false to disable this feature.  loadInBackgroundUnit specifies what time interval to load data from; options are 'month' and 'day'.
 
 The downside to the background loading feature is that the server load is higher and more bandwidth is used; the upside is dramatically enhanced performance.
 
@@ -153,11 +157,11 @@ showSqmsDropdown: true | false | null,
 defaultSqms: null | [ <string>, ... ],
 ```
 
-These options can (and should) be ignored if working with only one SQM station's data.
+These options should be ignored if working with only one SQM station's data or if working with a small (say, at most five) number of stations.
 
-Set enabledSqms to true to enable all SQMs in the data directory (enable meaning their data is loaded); alternatively, set it to an array of subdirectory names to enable only those sqms.
+Set enabledSqms to true to enable all SQMs in the data directory (enable meaning their data is loaded); alternatively, set it to an array of subdirectory names to enable only those sqms.  Default is true.
 
-Set showSqmsDropdown to force the visualizer to present a dropdown list of the SQMs which the user can use to enable and disable them.  Set showSqmsDropdown to null (the default) to show the dropdown only if enabledSqms is not set to true (this is the default behavior as it shows the dropdown if enabled is set to an array).
+Set showSqmsDropdown to force the visualizer to present a dropdown list of the SQMs which the user can use to enable and disable them.  Set showSqmsDropdown to null to show the dropdown only if enabledSqms is not set to true (this is the default behavior as it shows the dropdown if enabled is set to an array).
 
 Set defaultSqms to the name of an SQM or an array of names (names meaning the names of the subdirectories in the data directory) to make their data visible by default (and all others' data invisible by default).
 
@@ -179,19 +183,19 @@ chartTimeFormat: <string>,
 
 The visualizer displays dates and times using the configuration options controlsDatetimeFormats (for input controls such as the nightly date picker), displayDatetimeFormats (for e.g. the title of the chart) and filenameDatetimeFormats (for the file name to use if the user asks to save the chart as an image).  All three variables must be a key value object with keys datetime, date and month and values being [valid dateFns formats](https://date-fns.org/v1.30.1/docs/format).
 
-Due to third party coding choices, chartDateFormat and chartTimeFormat, which specify how the labels in the chart should be displayed, must be [valid chartjs formats](https://www.chartjs.org/docs/latest/axes/cartesian/time.html), which unfortunately are not the same as those of dateFns.
+chartDateFormat and chartTimeFormat, which specify how the labels in the chart should be displayed, must be [valid chartjs formats](https://www.chartjs.org/docs/latest/axes/cartesian/time.html), which are not the same as the formats of dateFns.
 
 ### Color scheme
 
 ```colorScheme = [ '#<hex>', ... ],```
 
-colorScheme is an array of hexadecimal colors, e.g. '#3e85cd', which determine the colors of the lines in the time chart and bars in the bar chart.  The SQM stations, ordered first by defaultSqms then alphabetically for the remainder, are assigned colors from the array (with looping back to the start in the event more SQMs than colors are specified).
+colorScheme is an array of hexadecimal colors, e.g. '#3e85cd', which determine the colors of the lines in the time chart and bars in the bar chart.  The SQM stations, ordered first by defaultSqms then alphabetically for the rest, are assigned colors from the array (looping back to the start in the event more SQMs than colors are specified).
 
 ### Fetch URL
 
 ```fetchUrl: <string>,```
 
-This section should be ignored unless you installed the SQM Data Retriever before installing the SQM Visualizer (a practice which is not recommended and should be uncommon).
+This option should be ignored unless you installed the SQM Data Retriever before installing the SQM Visualizer (a practice which is not recommended and should be uncommon).
 
 If, for some reason, you have installed the SQM Data Retriever in a nonstandard location, fetchURL
 specifies the URL of the sqm.php file for the retriever.
@@ -211,3 +215,7 @@ serverDatetimeFormats specifies how the backend returns date and time informatio
 ## config.php
 
 The SQM Data Retriever backend is configured by editing the config.php file in the same directory as sqm.php.  See the [SQM Data Retriever configuration instructions](https://github.com/dcreutz/SQM-Data-Retriever/blob/main/config.MD).
+
+## Standalone configuration
+
+While the standalone version does not have configuration options per se, in principle one could edit the html file to add any configuration options from config.js desired to the sqmConfig object defined in the sqm_visualizer.html file.

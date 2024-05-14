@@ -12,7 +12,7 @@ The Sky Quality Meter (SQM) captures and records data on how dark the sky is by 
 
 Upon launching the SQM Visualizer, the user is presented with a graph showing the most recent set of SQM readings.  Depending on the time of day, the graph presents either data from “yesterday”, or data from today since evening nautical twilight (this can be configured to be civil or astronomical twilight).  (Prior to today’s twilight, the data shown is that for yesterday.)  The SQM Visualizer will update the graph in real time as new data is downloaded from the Unihedron device.
 
-While there are number of configuration options that can tweak the specifics of the display for individual implementations, the default configuration presents nightly data with the best readings at the bottom of the graph and the readings for the brightest sky at the top.  Since readings typically run from evening twilight into the night (ending at morning twilight), the readings presented generally look like a broad valley, rapidly moving towards the best readings at the bottom of the graph, running through the night, and then moving upwards as the sun rises in the morning.  By default, when presenting best nightly readings over a time range, the vertical axis is oriented with the darkest readings at the top.
+While there are number of configuration options that can tweak the specifics of the display for individual implementations, the default configuration presents nightly data with the best (darkest/highest msas) readings at the bottom of the graph and the readings for the brightest sky at the top.  Since readings typically run from evening twilight into the night (ending at morning twilight), the readings presented generally look like a broad valley, rapidly moving towards the best readings at the bottom of the graph, running through the night, and then moving upwards as the sun rises in the morning.  By default, when presenting best nightly readings over a time range, the vertical axis is oriented with the darkest readings at the top.
 
 The graph consists of a line with circles representing each data point.  The colors and shading of the line and circles provide information about the conditions of the sky (e.g., moon above the horizon, estimated cloud cover [as calculated by algorithms within the SQM Visualizer], etc.).  The SQM Visualizer can display multiple reporting stations (as described below).  Each reporting station is displayed with a different color.
 
@@ -37,17 +37,17 @@ Below the graph is the legend showing the colors for each displayed station, and
 
 ## Options menu
 
-Clicking with the right mouse button (press and hold on touch screen devices) anywhere in the graph opens an options menu.  The options are:
+Clicking with the right mouse button (press and hold on touch screen devices) anywhere on the graph opens an options menu.  The options are:
 
 * Open graph in new tab – which displays the current graph as an image in a new tab
 * Save graph as image – which downloads the current graph image as a .png file to your default download folder
-* Show/hide statistics – which adds a row above the graph displaying statistics for the time interval displayed on the graph; for each station selected for display, statistics shown are: name of station; mean msas value; median msas value; number of data readings; and best reading with date/time of it’s first occurrence
+* Show/hide statistics – which adds a row above the graph displaying statistics for the time interval displayed on the graph; for each station selected for display, statistics shown are: name of station; mean msas value; median msas value; number of data readings; and best (highest msas) reading with date/time of it’s first occurrence
 * Show/hide bar chart – which displays a bar chart below the data display providing an aggregate view of the data readings for the displayed interval
 * Hide/show best reading – which removes the display of the best reading during the time interval that appears above the graph
 * Hide/show latest reading – which removes the display of the last reading that appears below the graphical display
 * Exclude/include sun, moon, clouds data – which removes those data points where the algorithms of the SQM Visualizer evaluates that the data are influenced by the sun, moon, or clouds; this results in gaps in the graph and shows data points only when the sky is dark and presumed to be clear
 * Exclude/include clouds data – which removes those data points where the algorithms of the SQM Visualizer evaluates that the data are influenced by clouds (but does not remove sun or moon influenced data)
-* Axis minimum – which sets the minimum msas reading to be included on the vertical axis
+* Axis minimum – which sets the minimum msas reading to be included on the vertical axis (note that the minimum cannot be set lower than the bad daat cutoff specified in the configuration file, the default cutoff is 10.0)
 * Axis maximum – which sets the maximum msas reading to be included on the vertical axis
 * Reverse vertical axis – which reverses the direction of the vertical axis
 * Hide/show legend – which removes the legend below the graph showing the color codes and geographical data for the (possibly multiple) SQM stations displayed on the graph
@@ -77,7 +77,7 @@ Clicking on an SQM dataset in the legend will show or hide that dataset's readin
 
 ## Swiping / arrow buttons
 
-If the user swipes right or left on a touch screen device (equivalently on a computer, if a user clicks the left or right arrow buttons above the graph), the data displayed will shift one night (one month if viewing best nightly readings) forward or backward in time.
+If the user swipes right or left on a touch screen device (equivalently on a nontouch device, if the user clicks the left or right arrow buttons above the graph), the data displayed will shift one night (one month if viewing best nightly readings) forward or backward in time.
 
 ## Grid view
 
