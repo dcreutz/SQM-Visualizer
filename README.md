@@ -40,7 +40,7 @@ Many features are documented in the [user guide](UserGuide.MD) contributed by Al
 
 3. Copy (or symlink) your SQM data files into the data directory.
 
-4. [Recommended] Make the cache directory writeable by the web server user.  On shared hosting, this step usually isn't necessary; on a typical linux system, this means running chown to set the owner of the cache folder to www or www-data.
+4. [Recommended] Make the cache directory writeable by the web server user.  On shared hosting, this is often automatic; on a typical linux server, use chown to set the owner of the cache directory to www or www-data.
 
 5. [Optional] If you have a camera taking images of the sky, copy (or symlink) the images in to the images directory.  The directory structure expected is images/YYYY-MM/YYYY-MM-DD/image-file-name, see the [SQM Data Retriever configuration instructions](https://github.com/dcreutz/SQM-Data-Retriever/blob/main/config.MD) for more information.
 
@@ -74,7 +74,7 @@ If cacheing is enabled, the file names can be anything.
 
 ### clear_cache.php
 
-Browser callable script to clear the cache.  Disabled by default, to enable it, edit the .php file and change $disable = true to $disable = false.  Ideally an unnecessary script but included since cache corruption can occur.
+Browser callable script to clear the cache.  Disabled by default, to enable it, edit the .php file and change the line ```$disable = true;``` to ```$disable = false;```.  Ideally an unnecessary script but included since cache corruption can occur when server connectivity is interrupted.
 
 ### bin/clear_cache_cli.php
 
@@ -86,7 +86,7 @@ Command line script to update the cache.  This script can only be run when in th
 
 When working with large datasets, and most especially when resizing images, this script should be used prior to the first browser call to the backend.
 
-Note that this script must be run as the same server user as the web server runs as, or after running it, the cache must be manually set to be writeable by the web user.
+Note that this script must be run as the same server user as the web server runs as, or after running it, the cache (the cache directory and all files inside it) must be manually set to be writeable by the web user.
 
 Optionally, a cron job can be configured to periodically update the cache using a cron.d file (or crontab entry) similar to
 
@@ -98,15 +98,15 @@ If you have data files for more than about five SQMs, you may wish to take advan
 
 ## Server backend
 
-The server backend, included in the distribution files for the SQM Visualizer, is the [SQM Data Retriever](https://github.com/dcreutz/SQM_Data-Retriever).  While developed to process data files for the SQM Visualizer, the SQM Data Retriever is a standalone server application with a full API.
+The server backend, included in the distribution files for the SQM Visualizer, is the [SQM Data Retriever](https://github.com/dcreutz/SQM_Data-Retriever).  While developed exclusively to process data files for the SQM Visualizer, the SQM Data Retriever is a standalone server application with a full API and may be of use for other applications.
 
 ## Data collection
 
-The software works well in conjunction with [PySQM](https://github.com/mireianievas/PySQM) performing the actual data collection.  The simplest method of combining the two is to run PySQM creating monthly data files and symlink the folder containing the monthly data files to the data directory in the visualizer folder.
+The software works well in conjunction with [PySQM](https://github.com/mireianievas/PySQM) performing the actual data collection.  The simplest method of combining the two is to run PySQM creating monthly data files and symlink the directory containing the monthly data files to the data directory in the visualizer directory.
 
 ## Acknowledgements
 
-Thanks to [chart.js](https://www.chartjs.org/), [chartjs-datefns-adapter](https://github.com/chartjs/chartjs-adapter-date-fns), [dateFns](https://date-fns.org/), [flatpickr](https://flatpickr.js.org/), [multiselect](https://github.com/miket-dev/multiselect), [papaparse](https://github.com/mholt/PapaParse), [suncalc](https://github.com/mourner/suncalc) and [suncalc-php](https://github.com/gregseth/suncalc-php).
+Thanks to [chart.js](https://www.chartjs.org/), [chartjs-datefns-adapter](https://github.com/chartjs/chartjs-adapter-date-fns), [dateFns](https://date-fns.org/), [flatpickr](https://flatpickr.js.org/), [multiselect](https://github.com/miket-dev/multiselect), [papaparse](https://github.com/mholt/PapaParse), [suncalc](https://github.com/mourner/suncalc) and [suncalc-php](https://github.com/gregseth/suncalc-php), all of which are incorporated into the SQM Visualizer.
 Thanks to Bill Kowalik for sharing his regression analysis code which the SQM Data Retriever's regression algorithm is loosely based on.
 
 ## Licensing
