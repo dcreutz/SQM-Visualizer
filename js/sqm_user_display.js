@@ -47,6 +47,7 @@ class SQMUserDisplay {
 			SQMUserDisplay.hideBinning();
 		}
 		SQMUserDisplay.hideUnknownCloudiness();
+		SQMUserDisplay.hideCloudinessKey();
 		$('addfileclose').addEventListener("click",(event) => {
 			SQMUserDisplay.hideAddFileInput();
 		});
@@ -252,13 +253,22 @@ class SQMUserDisplay {
 		}
 	}
 	
-	// called when data without mean R^2 values is being displayed
+	// called when data with partial mean R^2 values is being displayed
 	static showUnknownCloudiness() {
 		$('keyunknownclouds').style.display = "inline-block";
 	}
 	
 	static hideUnknownCloudiness() {
 		$('keyunknownclouds').style.display = "none";
+	}
+	
+	static showCloudinessKey() {
+		$('keycloudiness').style.display = "inline-block";
+	}
+	
+	// called when data without mean R^2 values is being displayed
+	static hideCloudinessKey() {
+		$('keycloudiness').style.display = "none";
 	}
 	
 	// called by the standalone version

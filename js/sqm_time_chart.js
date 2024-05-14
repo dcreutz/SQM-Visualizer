@@ -394,6 +394,12 @@ class SQMTimeChart {
 		}
 		// tell the context menu whether it should offer the option of filtering
 		this.#contextMenu.canFilter(canFilterClouds,canFilterSunMoonClouds);
+		// tell user display whether to show cloudiness in the key
+		if (canFilterClouds) {
+			SQMUserDisplay.showCloudinessKey();
+		} else {
+			SQMUserDisplay.hideCloudinessKey();
+		}
 		// tell the user display whether to show the dashed line in the key
 		if (hasIndeterminateCloudiness) {
 			SQMUserDisplay.showUnknownCloudiness();

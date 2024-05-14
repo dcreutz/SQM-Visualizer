@@ -223,7 +223,7 @@ class SQMTimeContextMenu extends SQMContextMenu {
 	// called by the timechart to tell us if filtering is possible
 	canFilter(clouds,sunMoonClouds) {
 		this.#canFilterClouds = clouds;
-		this.#canFilterSunMoonClouds = clouds;
+		this.#canFilterSunMoonClouds = sunMoonClouds;
 		this.#drawFilterItems();
 	}
 	
@@ -324,14 +324,26 @@ class SQMTimeContextMenu extends SQMContextMenu {
 		switch (this.#showingWhich) {
 			case 'all':
 				this.#clouds.innerHTML = "Exclude cloudy data";
-				this.#sunMoonClouds.innerHTML = "Exclude sun, moon, clouds";
+				if (this.#canFilterClouds) {
+					this.#sunMoonClouds.innerHTML = "Exclude sun, moon, clouds";
+				} else {
+					this.#sunMoonClouds.innerHTML = "Exclude sun and moon";
+				}
 				break;
 			case 'noCloudy':
 				this.#clouds.innerHTML = "Include cloudy data";
-				this.#sunMoonClouds.innerHTML = "Exclude sun, moon, clouds";
+				if (this.#canFilterClouds) {
+					this.#sunMoonClouds.innerHTML = "Exclude sun, moon, clouds";
+				} else {
+					this.#sunMoonClouds.innerHTML = "Exclude sun and moon";
+				}
 				break;
 			case 'noSunMoonClouds':
-				this.#sunMoonClouds.innerHTML = "Include sun, moon, clouds";
+				if (this.#canFilterClouds) {
+					this.#sunMoonClouds.innerHTML = "Include sun, moon, clouds";
+				} else {
+					this.#sunMoonClouds.innerHTML = "Include sun and moon";
+				}
 				break;
 		}
 		var either = false;

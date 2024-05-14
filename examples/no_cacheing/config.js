@@ -22,7 +22,7 @@ const sqmConfig = {
 	
 	/*	set the default display options, all of which can be overridden on a per session basis
 		using options in the context (right-click) menu */
-	showLegend: true, 				// names of sqm stations
+	showLegend: false, 				// names of sqm stations
 	showKey: true, 					// color coding key
 	showBestReading: true,			// display best reading below title
 	showLatestReading: false,		// display latest reading at bottom of page

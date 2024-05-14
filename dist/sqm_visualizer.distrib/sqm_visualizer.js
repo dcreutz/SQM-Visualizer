@@ -298,7 +298,7 @@ class SQMTimeContextMenu extends SQMContextMenu{#timeChart;#chart;#viewImage;#sh
 this._addMenuSeparator('filesep');this._addMenuItem("Add local data",SQMUserDisplay.showAddFileInput,'lifileinput');if(sqmConfig.dataFilesLink){this._addMenuItem('View data files',SQMUserDisplay.dataFilesLink,'datafileslink');}
 if(sqmConfig.showAboutLink){this._addMenuSeparator();SQMAbout.initialize('aboutpage');this._addMenuItem('About...',SQMAbout.show,'aboutlink');}}
 showViewImage(show){this.#showViewImage=show;}
-canFilter(clouds,sunMoonClouds){this.#canFilterClouds=clouds;this.#canFilterSunMoonClouds=clouds;this.#drawFilterItems();}
+canFilter(clouds,sunMoonClouds){this.#canFilterClouds=clouds;this.#canFilterSunMoonClouds=sunMoonClouds;this.#drawFilterItems();}
 _click(event){super._click(event);if(this.#showViewImage){this.#viewImage.style.display='block';}else{this.#viewImage.style.display='none';}}
 static#imageInNewTab(contextMenu){contextMenu._imageInNewTab();}
 _imageInNewTab(){this.#timeChart.blob(SQMUserDisplay.imageInNewTab);}
@@ -318,7 +318,10 @@ static#showHideLegend(contextMenu){contextMenu._showHideLegend();}
 _showHideLegend(){this.#timeChart.showHideLegend();}
 setMin(newMin){this.#min.value=newMin;}
 setMax(newMax){this.#max.value=newMax;}
-setShowingWhich(which){this.#showingWhich=which;this.#drawFilterItems();}#drawFilterItems(){switch(this.#showingWhich){case'all':this.#clouds.innerHTML="Exclude cloudy data";this.#sunMoonClouds.innerHTML="Exclude sun, moon, clouds";break;case'noCloudy':this.#clouds.innerHTML="Include cloudy data";this.#sunMoonClouds.innerHTML="Exclude sun, moon, clouds";break;case'noSunMoonClouds':this.#sunMoonClouds.innerHTML="Include sun, moon, clouds";break;}
+setShowingWhich(which){this.#showingWhich=which;this.#drawFilterItems();}#drawFilterItems(){switch(this.#showingWhich){case'all':this.#clouds.innerHTML="Exclude cloudy data";if(this.#canFilterClouds){this.#sunMoonClouds.innerHTML="Exclude sun, moon, clouds";}else{this.#sunMoonClouds.innerHTML="Exclude sun and moon";}
+break;case'noCloudy':this.#clouds.innerHTML="Include cloudy data";if(this.#canFilterClouds){this.#sunMoonClouds.innerHTML="Exclude sun, moon, clouds";}else{this.#sunMoonClouds.innerHTML="Exclude sun and moon";}
+break;case'noSunMoonClouds':if(this.#canFilterClouds){this.#sunMoonClouds.innerHTML="Include sun, moon, clouds";}else{this.#sunMoonClouds.innerHTML="Include sun and moon";}
+break;}
 var either=false;if(this.#canFilterClouds&&this.#showingWhich!='noSunMoonClouds'){this.#clouds.style.display='block';either=true;}else{this.#clouds.style.display='none';}
 if(this.#canFilterSunMoonClouds){this.#sunMoonClouds.style.display='block';either=true;}else{this.#sunMoonClouds.style.display='none';}
 if(either){this.#cloudsSep.style.display='block';}else{this.#cloudsSep.style.display='none';}}
@@ -615,7 +618,8 @@ redraw(animationDuration=null){if(animationDuration){this.#chartObject.update(an
 var hasReadings=false;var hasIndeterminateCloudiness=false;var canFilterClouds=false;var canFilterSunMoonClouds=false;this.activeSqmIds().forEach((sqmId)=>{const dataset=this.#chartObject.data.datasets.find((dataset)=>dataset.sqmId==sqmId);if(dataset.data.length>0){hasReadings=hasReadings||dataset.data.some((point)=>{return((this.#sqmChart.startDatetime<=point.x)&&(this.#sqmChart.endDatetime>=point.x)&&(point.y!=undefined)&&(point.y!=null));});}
 if(this.#readingsSet.get(dataset.sqmId).canFilterClouds()){canFilterClouds=true;dataset.data.forEach((point)=>{const r2=this.#readingsSet.get(sqmId).reading(point.x).mean_r_squared;if((r2==null)||(r2==undefined)){hasIndeterminateCloudiness=true;}});}
 if(this.#readingsSet.get(dataset.sqmId).canFilterSunMoonClouds()){canFilterSunMoonClouds=true;}});if(hasReadings){SQMUserDisplay.hideNoReadingsBox();}else{SQMUserDisplay.showNoReadingsBox(this.#showWhich!='all');}
-this.#contextMenu.canFilter(canFilterClouds,canFilterSunMoonClouds);if(hasIndeterminateCloudiness){SQMUserDisplay.showUnknownCloudiness();}else{SQMUserDisplay.hideUnknownCloudiness();}
+this.#contextMenu.canFilter(canFilterClouds,canFilterSunMoonClouds);if(canFilterClouds){SQMUserDisplay.showCloudinessKey();}else{SQMUserDisplay.hideCloudinessKey();}
+if(hasIndeterminateCloudiness){SQMUserDisplay.showUnknownCloudiness();}else{SQMUserDisplay.hideUnknownCloudiness();}
 this.#contextMenu.setMin(Math.floor(this.#chartObject.scales.y.min));this.#contextMenu.setMax(Math.ceil(this.#chartObject.scales.y.max));}
 flipChart(){if(this.#readingsType=='all_readings'){this.#reverseAll=!this.#reverseAll;sqmConfig.nightlyAxisDescending=!sqmConfig.nightlyAxisDescending;}else{this.#reverseBest=!this.#reverseBest;sqmConfig.bestReadingAxisDescending=!sqmConfig.bestReadingAxisDescending;}
 const reversed=this.#chartObject.options.scales.y.reverse;this.#chartObject.options.scales.y.reverse=!reversed;this.redraw();}
@@ -713,7 +717,7 @@ if(sqmConfig.showBestReading){SQMUserDisplay.showBestBox();}else{SQMUserDisplay.
 if(sqmConfig.showLatestReading){SQMUserDisplay.showLatestBox();}else{SQMUserDisplay.hideLatestBox();}
 if(sqmConfig.showStats){SQMUserDisplay.showStatsBox();}else{SQMUserDisplay.hideStatsBox();}
 if(sqmConfig.showBinning){SQMUserDisplay.showBinning();}else{SQMUserDisplay.hideBinning();}
-SQMUserDisplay.hideUnknownCloudiness();$('addfileclose').addEventListener("click",(event)=>{SQMUserDisplay.hideAddFileInput();});}
+SQMUserDisplay.hideUnknownCloudiness();SQMUserDisplay.hideCloudinessKey();$('addfileclose').addEventListener("click",(event)=>{SQMUserDisplay.hideAddFileInput();});}
 static setPageTitle(title){$('pagetitle').innerHTML=title;document.title=title;}
 static hideCover(){$('cover').style.display="none";}
 static showLoading(){$('loading').style.display="inline-block";}
@@ -749,6 +753,8 @@ static hideBinning(){SQMUserDisplay.#allClassInnerHTML('binning',"Show bar chart
 static showhideBinning(){if(SQMUserDisplay.isBinningShown()){SQMUserDisplay.hideBinning();}else{SQMUserDisplay.showBinning();}}
 static showUnknownCloudiness(){$('keyunknownclouds').style.display="inline-block";}
 static hideUnknownCloudiness(){$('keyunknownclouds').style.display="none";}
+static showCloudinessKey(){$('keycloudiness').style.display="inline-block";}
+static hideCloudinessKey(){$('keycloudiness').style.display="none";}
 static showInitialFileInput(){$('initialfileinputcover').style.display="inline-block";}
 static hideInitialFileInput(){$('initialfileinputcover').style.display="none";}
 static showAddFileInput(){$('addfileinputcover').style.display="inline-block";}
