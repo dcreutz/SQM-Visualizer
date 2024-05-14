@@ -106,7 +106,7 @@ The software works well in conjunction with [PySQM](https://github.com/mireianie
 
 ## Acknowledgements
 
-Thanks to [chart.js](https://www.chartjs.org/), [chartjs-datefns-adapter](https://github.com/chartjs/chartjs-adapter-date-fns), [dateFns](https://date-fns.org/), [flatpickr](https://flatpickr.js.org/), [multiselect](https://github.com/miket-dev/multiselect), [papaparse](https://github.com/mholt/PapaParse), [suncalc](https://github.com/mourner/suncalc) and [suncalc-php](https://github.com/gregseth/suncalc-php), all of which are incorporated into the SQM Visualizer.
+Thanks to [chart.js](https://www.chartjs.org/), [chartjs-datefns-adapter](https://github.com/chartjs/chartjs-adapter-date-fns), [dateFns](https://date-fns.org/), [flatpickr](https://flatpickr.js.org/), [multiselect](https://github.com/miket-dev/multiselect), [papaparse](https://github.com/mholt/PapaParse), [suncalc](https://github.com/mourner/suncalc) and [suncalc-php](https://github.com/gregseth/suncalc-php).
 Thanks to Bill Kowalik for sharing his regression analysis code which the SQM Data Retriever's regression algorithm is loosely based on.
 
 ## Licensing
