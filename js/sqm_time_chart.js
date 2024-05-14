@@ -1,7 +1,7 @@
 /*	sqm_time_chart.js
 	SQM Visualizer
 	(c) 2024 Darren Creutz
-	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE */
+	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 
 /*	manages the actual time chart object central to the app */
 

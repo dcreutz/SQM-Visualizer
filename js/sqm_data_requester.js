@@ -1,7 +1,7 @@
 /*	sqm_data_requester.js
 	SQM Visualizer
 	(c) 2024 Darren Creutz
-	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE */
+	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 
 /*	requests data from the SQMRequest object when asked to be the SQMManager */
 

@@ -1,7 +1,7 @@
 /*	sqm_load_in_background.js
 	SQM Visualizer
 	(c) 2024 Darren Creutz
-	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE */
+	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 	
 /*	loads data from the server in the background and caches it
 	increases responsiveness of the web application at the expense of more server traffic */

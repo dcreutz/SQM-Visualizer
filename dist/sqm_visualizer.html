@@ -1019,7 +1019,7 @@ if(rise&&set)break;h0=h2;}
 var result={};if(rise)result.rise=hoursLater(t,rise);if(set)result.set=hoursLater(t,set);if(!rise&&!set)result[ye>0?'alwaysUp':'alwaysDown']=true;return result;};if(typeof exports==='object'&&typeof module!=='undefined')module.exports=SunCalc;else if(typeof define==='function'&&define.amd)define(SunCalc);else window.SunCalc=SunCalc;}());
 /*	SQM Visualizer
 	(c) 2024 Darren Creutz
-	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE */
+	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 
 var sqmManager;window.addEventListener("load",(event)=>{if(!sqmConfig){sqmConfig={};}
 if(!sqmConfig.defaultSqm){sqmConfig.defaultSqm=[];}
@@ -1784,7 +1784,7 @@ const timezones=[{id:'Africa/Abidjan',name:'GMT',lat:5.31666,long:-4.03334},{id:
 <!-- standalone.php -->
 <!-- SQM Visualizer -->
 <!-- (c) 2024 Darren Creutz -->
-<!-- Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE --><script type="text/javascript">
+<!-- Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 --><script type="text/javascript">
 var elm=document.getElementsByTagName("html")[0];
 elm.style.display="none";
 document.addEventListener("DOMContentLoaded",function(event) {elm.style.display="block"; });

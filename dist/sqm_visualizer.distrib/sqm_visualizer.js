@@ -107,7 +107,7 @@ if(rise&&set)break;h0=h2;}
 var result={};if(rise)result.rise=hoursLater(t,rise);if(set)result.set=hoursLater(t,set);if(!rise&&!set)result[ye>0?'alwaysUp':'alwaysDown']=true;return result;};if(typeof exports==='object'&&typeof module!=='undefined')module.exports=SunCalc;else if(typeof define==='function'&&define.amd)define(SunCalc);else window.SunCalc=SunCalc;}());
 /*	SQM Visualizer
 	(c) 2024 Darren Creutz
-	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE */
+	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 
 var sqmManager;window.addEventListener("load",(event)=>{if(!sqmConfig){sqmConfig={};}
 if(!sqmConfig.defaultSqm){sqmConfig.defaultSqm=[];}

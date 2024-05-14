@@ -1,7 +1,7 @@
 /*	sqm_about.js
 	SQM Visualizer
 	(c) 2024 Darren Creutz
-	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE */
+	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 
 /*	manages the popup shown when the user chooses About in the context menu
 	if this option is enabled in config.js */

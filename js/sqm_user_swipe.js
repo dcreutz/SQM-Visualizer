@@ -1,7 +1,7 @@
 /*	sqm_user_swipe.js
 	SQM Visualizer
 	(c) 2024 Darren Creutz
-	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE */
+	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 
 /*	Listens for swipe actions on touch screen devices
 	

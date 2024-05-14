@@ -1,7 +1,7 @@
 /*	sqm_bar_chart.js
 	SQM Visualizer
 	(c) 2024 Darren Creutz
-	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE */
+	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 
 /*	represents the bar chart displayed below the time chart when requested by the user */
 	

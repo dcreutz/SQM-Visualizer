@@ -3,7 +3,7 @@
 #	build.sh
 #	SQM Visualizer
 #	(c) 2024 Darren Creutz
-#	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE
+#	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3
 
 #	this script builds the distribution files
 

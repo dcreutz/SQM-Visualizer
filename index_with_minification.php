@@ -2,7 +2,7 @@
 /*	index_with_minifaction.php
 	SQM Visualizer
 	(c) 2024 Darren Creutz
-	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE */
+	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 
 //	Creates the index.php file meant for deployment
 ?>

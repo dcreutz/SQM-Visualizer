@@ -1,7 +1,7 @@
 /*	sqm_chart_color_manager.js
 	SQM Visualizer
 	(c) 2024 Darren Creutz
-	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE */
+	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 
 /*	handles determining how to color and otherwise display the data in the charts
 	relies on multiple options in config.js to determine colorization */

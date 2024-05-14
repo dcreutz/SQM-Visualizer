@@ -1,7 +1,7 @@
 /*	sqm_browser_history.js
 	SQM Visualizer
 	(c) 2024 Darren Creutz
-	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE */
+	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 
 /*	manages the browser history (back and forward buttons) and ensures urls are written
 	so that on page reload, the same request is made

@@ -1,7 +1,7 @@
 /*	sqm_file_loader.js
 	SQM Visualizer
 	(c) 2024 Darren Creutz
-	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE */
+	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 
 /*	loads data from files provided by the user
 	used by the SQMManager to create in memory sqm datasets */

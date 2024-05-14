@@ -2,7 +2,7 @@
 /*	main.php
 	SQM Visualizer
 	(c) 2024 Darren Creutz
-	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE */
+	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 
 // Outputs the bulk of the index.php and standalone.php files
 ?><script type="text/javascript">

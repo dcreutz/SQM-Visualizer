@@ -1,7 +1,7 @@
 /*	timezone.js
 	SQM Visualizer
 	(c) 2024 Darren Creutz
-	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE */
+	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 
 /*	returns the timezone closest to the given coordinates */
 function getNearestTimezone(latitude,longitude) {

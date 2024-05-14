@@ -1,7 +1,7 @@
 /*	sqm_context_menu.js
 	SQM Visualizer
 	(c) 2024 Darren Creutz
-	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE */
+	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 
 /*	manages the context menus opened by right-clicking (press and hold on mobile) on the charts */
 

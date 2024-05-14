@@ -1,7 +1,7 @@
 /*	sqm_default_config.js
 	SQM Visualizer
 	(c) 2024 Darren Creutz
-	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE */
+	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 
 /*	sensible defaults for all config.js options
 	sqm.js uses these to ensure every config option is set to something

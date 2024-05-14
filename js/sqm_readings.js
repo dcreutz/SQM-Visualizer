@@ -1,7 +1,7 @@
 /*	sqm_readings.js
 	SQM Visualizer
 	(c) 2024 Darren Creutz
-	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE */
+	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 
 /*	object containing the actual readings to be displayed in the charts
 	each sqm's readings for a given query are put in an SQMReadings object */
