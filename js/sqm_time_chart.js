@@ -852,7 +852,7 @@ class SQMTimeChart {
 				Math.round(reading.moon_illumination.fraction*100) + "%"
 			);
 		}
-		if (sqmConfig.hoverTextR2 && reading.mean_r_squared) {
+		if (sqmConfig.hoverTextR2 && reading.mean_r_squared && !reading.mean_r_squared_copied) {
 			result.push(
 				"Mean r² = " + (reading.mean_r_squared).toFixed(2)
 			);

@@ -192,9 +192,11 @@ class SQMReadings {
 					datetimes.forEach((datetime) => {
 						if (datetime < firstNonNullIndex) {
 							readings[datetime].mean_r_squared = firstNonNullR2;
+							readings[datetime].mean_r_squared_copied = true;
 						}
 						if (datetime > lastNonNullIndex) {
 							readings[datetime].mean_r_squared = lastNonNullR2;
+							readings[datetime].mean_r_squared_copied = true;
 						}
 					});
 				}
