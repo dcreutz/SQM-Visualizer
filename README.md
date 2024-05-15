@@ -98,7 +98,7 @@ If you have data files for more than about five SQMs, you may wish to take advan
 
 ## Server backend
 
-The server backend, included in the distribution files for the SQM Visualizer, is the [SQM Data Retriever](https://github.com/dcreutz/SQM_Data-Retriever).  While developed exclusively to process data files for the SQM Visualizer, the SQM Data Retriever is a standalone server application with a full API and may be of use for other applications.
+The server backend, included in the distribution files for the SQM Visualizer, is the [SQM Data Retriever](https://github.com/dcreutz/SQM-Data-Retriever).  While developed exclusively to process data files for the SQM Visualizer, the SQM Data Retriever is a standalone server application with a full API and may be of use for other applications.
 
 ## Data collection
 
