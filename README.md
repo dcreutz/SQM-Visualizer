@@ -6,7 +6,7 @@ Works with files in the 'International Dark Sky Association (IDA) NSBM Community
 
 The software can be run as a web application or standalone (no server).
 
-The SQM Visualizer software is free and open-source, provided as-is and licensed under the GNU Affero General Public License version 3, or (at your option) any later version.  The sofware was designed and developed by Darren Creutz.
+The SQM Visualizer software is free and open-source, provided as-is and licensed under the GNU Affero General Public License version 3, or (at your option) any later version.  The software was designed and developed by Darren Creutz.
 
 While absolutely not mandatory, if you install the software on a public website and/or find it useful, the author would appreciate a quick email to [dcreutz@dcreutz.com](mailto:dcreutz@dcreutz.com?subject=SQMVisualizer) letting him know.
 
