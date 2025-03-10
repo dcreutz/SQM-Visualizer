@@ -1,12 +1,12 @@
 # SQM Visualizer
 
-Web application for visualizing data collected by Unihedron Sky Quality Meters.
+[Visualizer](https://www.dcreutz.com/sqm/index.html) for darkness readings collected by Unihedron Sky Quality Meters.
 
 Works with files in the 'International Dark Sky Association (IDA) NSBM Community Standards for Reporting Skyglow Observations' [format](https://darksky.org/app/uploads/bsk-pdf-manager/47_SKYGLOW_DEFINITIONS.PDF) and files in the format output by the Unihedron software feature 'sun-moon-mw-clouds'.
 
 The software can be run as a web application or standalone (no server).
 
-The SQM Visualizer software is free and open-source, provided as-is and licensed under the GNU Affero General Public License version 3, or (at your option) any later version.  The sofware was designed and developed by Darren Creutz.
+The SQM Visualizer software is free and open-source, provided as-is and licensed under the GNU Affero General Public License version 3, or (at your option) any later version.  The software was designed and developed by Darren Creutz.
 
 While absolutely not mandatory, if you install the software on a public website and/or find it useful, the author would appreciate a quick email to [dcreutz@gmail.com](mailto:dcreutz@gmail.com?subject=SQMVisualizer) letting him know.
 
