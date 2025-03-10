@@ -271,6 +271,14 @@ class SQMUserDisplay {
 		$('keycloudiness').style.display = "none";
 	}
 	
+	static showMWKey() {
+		$('keymw').style.display = "inline-block";
+	}
+	
+	static hideMWKey() {
+		$('keymw').style.display = "none";
+	}
+	
 	// called by the standalone version
 	static showInitialFileInput() {
 		$('initialfileinputcover').style.display = "inline-block";

@@ -16,21 +16,20 @@ class SQMSunUtils {
 		if (_.values(latitudeLongitudeObjects).length == 0) {
 			return SQMSunUtils.#sunsetBeforeDate(date,null,null);
 		}
-		return _.values(latitudeLongitudeObjects)
-				.map((obj) =>
+		return _.keys(latitudeLongitudeObjects)
+				.map((key) =>
 					SQMSunUtils.#sunsetBeforeDate(
-						date,obj.latitude,
-						obj.longitude,
-						obj.time_zone_id
+						date,latitudeLongitudeObjects[key].latitude,
+						latitudeLongitudeObjects[key].longitude,key
 					)
 				).reduce((latest,sunset) => latest < sunset ? sunset : latest,new Date(0));
 	}
 	
-	static #sunsetBeforeDate(date,latitude,longitude,timezone) {
-		const sunset = SQMSunUtils.#sunsetSunrise(date,latitude,longitude,timezone).sunset;
+	static #sunsetBeforeDate(date,latitude,longitude,sqmId) {
+		const sunset = SQMSunUtils.#sunsetSunrise(date,latitude,longitude,sqmId).sunset;
 		if (sunset > date) {
 			return SQMSunUtils.#sunsetSunrise(
-				dateFns.addDays(date,-1),latitude,longitude,timezone
+				dateFns.addDays(date,-1),latitude,longitude,sqmId
 			).sunset;
 		}
 		return sunset;
@@ -43,23 +42,14 @@ class SQMSunUtils {
 		);
 	}
 	
-	static #toTimezone(datetime,timezone) {
-		const newDate = new Date(datetime.toLocaleString('en-US',{timeZone:timezone}));
-		if (isNaN(newDate)) {
-			// if the calculation fails, just return the datetime given
-			return datetime;
-		}
-		return newDate;
-	}
-	
 	// returns sunset and sunrise for a given date
 	// defaults to 7pm and 5am if no latitude/longitude
-	static #sunsetSunrise(date,latitude,longitude,timezone) {
+	static #sunsetSunrise(date,latitude,longitude,sqmId) {
 		if (latitude && longitude) {
 			const times = SunCalc.getTimes(date,latitude,longitude);
 			return {
-				sunset: SQMSunUtils.#toTimezone(SQMSunUtils.#extractSunset(times),timezone),
-				sunrise: SQMSunUtils.#toTimezone(SQMSunUtils.#extractSunrise(times),timezone)
+				sunset: SQMDate.fixtz(SQMSunUtils.#extractSunset(times),sqmId),
+				sunrise: SQMDate.fixtz(SQMSunUtils.#extractSunrise(times),sqmId)
 			};
 		}
 		const fakeSunset = dateFns.setHours(dateFns.setMinutes(dateFns.setSeconds(date,0),0),19);
@@ -99,11 +89,11 @@ class SQMSunUtils {
 	// returns the sunset for the given night and the following sunrise
 	// night is a Date object
 	// returns strings of the datetimes
-	static sunsetSunriseForNight(night,latitude,longitude,timezone) {
+	static sunsetSunriseForNight(night,latitude,longitude,sqmId) {
 		const date = dateFns.setHours(SQMDate.parseServerDate(night),12);
-		const sunset = SQMSunUtils.#sunsetSunrise(date,latitude,longitude,timezone).sunset;
+		const sunset = SQMSunUtils.#sunsetSunrise(date,latitude,longitude,sqmId).sunset;
 		const sunrise =
-			SQMSunUtils.#sunsetSunrise(dateFns.addDays(date,1),latitude,longitude,timezone).sunrise;
+			SQMSunUtils.#sunsetSunrise(dateFns.addDays(date,1),latitude,longitude,sqmId).sunrise;
 		return { sunset: SQMDate.formatServerDatetime(sunset),
 				 sunrise: SQMDate.formatServerDatetime(sunrise) };
 	}
@@ -116,9 +106,7 @@ class SQMSunUtils {
 				night,
 				latitudeLongitudeObjects[key].latitude,
 				latitudeLongitudeObjects[key].longitude,
-				latitudeLongitudeObjects[key].timezoneOffset ?
-					latitudeLongitudeObjects[key].timezoneOffset : 
-					latitudeLongitudeObjects[key].time_zone_id
+				key
 			);
 		});
 		return result;

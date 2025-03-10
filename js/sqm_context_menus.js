@@ -206,10 +206,16 @@ class SQMTimeContextMenu extends SQMContextMenu {
 		if (sqmConfig.dataFilesLink) {
 			this._addMenuItem('View data files',SQMUserDisplay.dataFilesLink,'datafileslink');
 		}
-		if (sqmConfig.showAboutLink) {
+		if (sqmConfig.showAboutLink || sqmConfig.showUserGuideLink) {
 			this._addMenuSeparator();
+		}
+		if (sqmConfig.showAboutLink) {
 			SQMAbout.initialize('aboutpage');
 			this._addMenuItem('About...',SQMAbout.show,'aboutlink');
+		}
+		if (sqmConfig.showUserGuideLink) {
+			SQMUserGuide.initialize('userguidepage');
+			this._addMenuItem('User Guide',SQMUserGuide.show,'userguidelink');
 		}
 	}
 	
@@ -325,24 +331,48 @@ class SQMTimeContextMenu extends SQMContextMenu {
 			case 'all':
 				this.#clouds.innerHTML = "Exclude cloudy data";
 				if (this.#canFilterClouds) {
-					this.#sunMoonClouds.innerHTML = "Exclude sun, moon, clouds";
+					if (sqmConfig.milkyWay) {
+						this.#sunMoonClouds.innerHTML = "Exclude sun, moon, MW, clouds";
+					} else {
+						this.#sunMoonClouds.innerHTML = "Exclude sun, moon, clouds";
+					}
 				} else {
-					this.#sunMoonClouds.innerHTML = "Exclude sun and moon";
+					if (sqmConfig.milkyWay) {
+						this.#sunMoonClouds.innerHTML = "Exclude sun, moon and MW";
+					} else {
+						this.#sunMoonClouds.innerHTML = "Exclude sun and moon";
+					}
 				}
 				break;
 			case 'noCloudy':
 				this.#clouds.innerHTML = "Include cloudy data";
 				if (this.#canFilterClouds) {
-					this.#sunMoonClouds.innerHTML = "Exclude sun, moon, clouds";
+					if (sqmConfig.milkyWay) {
+						this.#sunMoonClouds.innerHTML = "Exclude sun, moon, MW, clouds";
+					} else {
+						this.#sunMoonClouds.innerHTML = "Exclude sun, moon, clouds";
+					}
 				} else {
-					this.#sunMoonClouds.innerHTML = "Exclude sun and moon";
+					if (sqmConfig.milkyWay) {
+						this.#sunMoonClouds.innerHTML = "Exclude sun, moon and MW";
+					} else {
+						this.#sunMoonClouds.innerHTML = "Exclude sun and moon";
+					}
 				}
 				break;
 			case 'noSunMoonClouds':
 				if (this.#canFilterClouds) {
-					this.#sunMoonClouds.innerHTML = "Include sun, moon, clouds";
+					if (sqmConfig.milkyWay) {
+						this.#sunMoonClouds.innerHTML = "Include sun, moon, MW, clouds";
+					} else {
+						this.#sunMoonClouds.innerHTML = "Include sun, moon, clouds";
+					}
 				} else {
-					this.#sunMoonClouds.innerHTML = "Include sun and moon";
+					if (sqmConfig.milkyWay) {
+						this.#sunMoonClouds.innerHTML = "Include sun, moon and MW";
+					} else {
+						this.#sunMoonClouds.innerHTML = "Include sun and moon";
+					}
 				}
 				break;
 		}

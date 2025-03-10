@@ -69,12 +69,14 @@ class SQMReadings {
 		this.#addSunMoonInfo(
 			this.#filteredR2,
 			sqmManager.availableSqmInfos[this.#sqmId].latitude,
-			sqmManager.availableSqmInfos[this.#sqmId].longitude
+			sqmManager.availableSqmInfos[this.#sqmId].longitude,
+			sqmManager.availableSqmInfos[this.#sqmId].time_zone_id
 		);
 		this.#addSunMoonInfo(
 			this.#filteredSMC,
 			sqmManager.availableSqmInfos[this.#sqmId].latitude,
-			sqmManager.availableSqmInfos[this.#sqmId].longitude
+			sqmManager.availableSqmInfos[this.#sqmId].longitude,
+			sqmManager.availableSqmInfos[this.#sqmId].time_zone_id
 		);
 		// add a datetime attribute to each reading so we don't rely on the array keys
 		this.#addDatetimeAttributes(this.#filteredR2);
@@ -209,19 +211,34 @@ class SQMReadings {
 		readings: a key value array of readings */
 	#addSunMoonInfo(readings,latitude,longitude) {
 		_.keys(readings).forEach((datetime) => {
+			const date = SQMDate.fixtzoffset(
+				SQMDate.parseServerDatetime(datetime),SQMReadings.#tzOffset(readings[datetime])
+			);
 			if (!readings[datetime].sun_position) {
 				readings[datetime].sun_position =
-					SQMSunMoonMWClouds.sunPosition(datetime,latitude,longitude);
+					SQMSunMoonMWClouds.sunPosition(date,latitude,longitude);
 			}
 			if (!readings[datetime].moon_position) {
 				readings[datetime].moon_position =
-					SQMSunMoonMWClouds.moonPosition(datetime,latitude,longitude);
+					SQMSunMoonMWClouds.moonPosition(date,latitude,longitude);
 			}
 			if (!readings[datetime].moon_illumination) {
 				readings[datetime].moon_illumination =
-					SQMSunMoonMWClouds.moonIllumination(datetime,latitude,longitude);
+					SQMSunMoonMWClouds.moonIllumination(date,latitude,longitude);
 			}
 		});
+		if (sqmConfig.milkyWay) {
+			_.keys(readings).forEach((datetime) => {
+				if (!readings[datetime].galatic_latitude) {
+					const galactic = 
+						SQMSunMoonMWClouds.milkyWay(readings[datetime],latitude,longitude);
+					if (galactic) {
+						readings[datetime].galactic_latitude = galactic.latitude;
+						readings[datetime].galactic_longitude = galactic.longitude;
+					}
+				}
+			});
+		}
 	}
 	
 	/*	add datetime attribute to each reading */
@@ -264,6 +281,12 @@ class SQMReadings {
 		const filteredSMC = {};
 		_.keys(readings).forEach((datetime) => {
 			var filter = false;
+			// filter out milky way data if that option is specified
+			if (sqmConfig.milkyWay && 
+				Math.abs(readings[datetime].galactic_latitude) <= sqmConfig.milkyWayCutoff) {
+					filter = true;
+			}
+			// filter based on solar altitude
 			if (readings[datetime].sun_position.altitude*180/Math.PI >=
 						sqmConfig.sunAltitudeCutoffs[2]) {
 				filter = true;
@@ -324,6 +347,33 @@ class SQMReadings {
 			return this.#filteredSMC[datetime];
 		}
 		return {};
+	}
+	
+	static #tzOffset(reading) {
+		const utcDate = SQMReadings.utcDate(reading.raw);
+		if (utcDate) {
+			const date = SQMDate.parseServerDatetime(reading.datetime);
+			return dateFns.differenceInMinutes(utcDate,date);
+		} else {
+			return (new Date(reading.datetime)).getTimezoneOffset();
+		}
+	}
+	
+	static utcDate(rawreading) {
+		if (!rawreading) {
+			return null;
+		}
+		if (rawreading["utc date & time"]) {
+			return new Date(Date.parse(rawreading["utc date & time"]));
+		}
+		if (rawreading["UTC Date & Time"]) {
+			return new Date(Date.parse(rawreading["UTC Date & Time"]));
+		}
+		if (rawreading.UTC_Date && rawreading.UTC_Time) {
+			return dateFns.parse(rawreading.UTC_Date + " " + rawreading.UTC_Time,
+				'YYYY-MM-DD HH:mm:ss', new Date());
+		}
+		return null;
 	}
 }
 

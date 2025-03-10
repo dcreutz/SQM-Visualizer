@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded",function(event) {elm.style.display=
 		</div>
 		<h3 id="graphtitle"></h3>
 		<h4 class="graphsubtitle" id="noreadingsbox">No readings in range</h4>
-		<h4 class="graphsubtitle" id="bestbox"><span id="besttext"></span></h4>
+		<h4 class="graphsubtitle" id="bestbox"><span id="besttext">&nbsp;</span></h4>
 	</div>
 	<div class="chartbox">
 		<div id="timechart">
@@ -160,14 +160,14 @@ document.addEventListener("DOMContentLoaded",function(event) {elm.style.display=
 	</div>
 	<div class="graphtextstats">
 		<h4 class="graphsubtitle" id="statsbox">
-			<div id="stats"></div>
+			<div id="stats">&nbsp;</div>
 		</h4>
 	</div>
 	<div id="chartkey">
 		<div id="chartkeyhelper">
 			<div class="keyitem">
 				<span class="tooltip defaultcursor">
-					Solar
+					<span class="smalltext">Sun</span>
 					<span class="toptooltiptext">
 						Readings affected by the sun, calculated from solar altitude
 					</span>
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded",function(event) {elm.style.display=
 			</div>
 			<div class="keyitem">
 				<span class="tooltip defaultcursor">
-					Lunar
+					<span class="smalltext">Moon</span>
 					<span class="toptooltiptext">
 						Readings affected by the moon, calculated from lunar altitude and illumination
 					</span>
@@ -184,18 +184,22 @@ document.addEventListener("DOMContentLoaded",function(event) {elm.style.display=
 				<span class="keybox"><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon1"><span class="keytooltiptext">Heavy moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon2"><span class="keytooltiptext">Heavy moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon3"><span class="keytooltiptext">High moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon4"><span class="keytooltiptext">High moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon5"><span class="keytooltiptext">Mild moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon6"><span class="keytooltiptext">Mild moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon7"><span class="keytooltiptext">Low moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon8"><span class="keytooltiptext">Low moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon9"><span class="keytooltiptext">Little moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymoon tooltip" id="keymoon10"><span class="keytooltiptext">(Effectively) no moon light</span></span><span class="keylinecontainer"><span class="keyline"></span></span></span>
 			</div>
 			<div class="keyitem" id="keycloudiness">
-				<span class="defaultcursor">Cloudiness</span>
-				<span class="keybox"><span id="keyclouds1"><span class="keylinecontainer"><span class="keyline"></span></span><span class="keyclouds tooltip"><span class="keytooltiptext">Very cloudy</span></span><span class="halfkeylinecontainer"><span class="halfkeyline"></span></span></span><span id="keyclouds2"><span class="halfkeylinecontainer"><span class="halfkeyline"></span></span><span class="keyclouds tooltip"><span class="keytooltiptext">Cloudy</span></span><span class="halfkeylinecontainer"><span class="halfkeyline"></span></span></span><span id="keyclouds3"><span class="halfkeylinecontainer"><span class="halfkeyline"></span></span><span class="keyclouds tooltip"><span class="keytooltiptext">Somewhat cloudy</span></span><span class="halfkeylinecontainer"><span class="halfkeyline"></span></span></span><span id="keyclouds4"><span class="halfkeylinecontainer"><span class="halfkeyline"></span></span><span class="keyclouds tooltip"><span class="keytooltiptext">Mostly clear</span></span><span class="halfkeylinecontainer"><span class="halfkeyline"></span></span></span><span id="keyclouds5"><span class="halfkeylinecontainer"><span class="halfkeyline"></span></span><span class="keyclouds tooltip"><span class="keytooltiptext">Clear</span></span><span class="keylinecontainer"><span class="keyline"></span></span></span></span>
-				<span class="keybox" id="keyunknownclouds">
-					<span class="keylinecontainerunknown tooltip">
-						<span class="keylinedashed">
-							<span class="keylinedash"></span>
-							<span class="keylinedash"></span>
-							<span class="keylinedash"></span>
-						</span>
-						<span class="keytooltiptext">Indeterminate cloudiness</span>
+				<span class="tooltip defaultcursor">
+					<span class="smalltext">Clouds</span>
+					<span class="toptooltiptext">
+						Readings affected by cloudiness, calculated from mean r&sup2;
 					</span>
 				</span>
+				<span class="keybox"><span id="keyclouds1"><span class="keylinecontainer"><span class="keyline"></span></span><span class="keyclouds tooltip"><span class="keytooltiptext">Very cloudy</span></span><span class="halfkeylinecontainer"><span class="halfkeyline"></span></span></span><span id="keyclouds2"><span class="halfkeylinecontainer"><span class="halfkeyline"></span></span><span class="keyclouds tooltip"><span class="keytooltiptext">Cloudy</span></span><span class="halfkeylinecontainer"><span class="halfkeyline"></span></span></span><span id="keyclouds3"><span class="halfkeylinecontainer"><span class="halfkeyline"></span></span><span class="keyclouds tooltip"><span class="keytooltiptext">Somewhat cloudy</span></span><span class="halfkeylinecontainer"><span class="halfkeyline"></span></span></span><span id="keyclouds4"><span class="halfkeylinecontainer"><span class="halfkeyline"></span></span><span class="keyclouds tooltip"><span class="keytooltiptext">Mostly clear</span></span><span class="halfkeylinecontainer"><span class="halfkeyline"></span></span></span><span id="keyclouds5"><span class="halfkeylinecontainer"><span class="halfkeyline"></span></span><span class="keyclouds tooltip"><span class="keytooltiptext">Clear</span></span><span class="keylinecontainer"><span class="keyline"></span></span></span></span><span class="keybox" id="keyunknownclouds"><span class="keylinecontainerunknown tooltip"><span class="keylinedashed"><span class="keylinedash"></span><span class="keylinedash"></span><span class="keylinedash"></span></span><span class="keytooltiptext">Indeterminate cloudiness</span></span></span>
+			</div>
+			<div class="keyitem" id="keymw">
+				<span class="tooltip defaultcursor">
+					<span class="smalltext" style="font-size: 95%;">Milky Way</span>
+					<span class="toptooltiptext">
+						Readings affected by the milky way, calculated from galactic latitude
+					</span>
+				</span>
+				<span class="keybox"><span class="keylinecontainer"><span class="keyline"></span></span><span class="keymw tooltip" id="keymw1"><span id="keymw1a"></span><span class="keytooltiptext" id="keymwtooltip1"></span></span><span class="keylinecontainer"><span class="keyline"></span></span></span>
 			</div>
 		</div>
 	</div>

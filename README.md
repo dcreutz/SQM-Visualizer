@@ -8,7 +8,7 @@ The software can be run as a web application or standalone (no server).
 
 The SQM Visualizer software is free and open-source, provided as-is and licensed under the GNU Affero General Public License version 3, or (at your option) any later version.  The sofware was designed and developed by Darren Creutz.
 
-While absolutely not mandatory, if you install the software on a public website and/or find it useful, the author would appreciate a quick email to [dcreutz@dcreutz.com](mailto:dcreutz@dcreutz.com?subject=SQMVisualizer) letting him know.
+While absolutely not mandatory, if you install the software on a public website and/or find it useful, the author would appreciate a quick email to [dcreutz@gmail.com](mailto:dcreutz@gmail.com?subject=SQMVisualizer) letting him know.
 
 ## Examples
 
@@ -58,6 +58,7 @@ Many features are documented in the [user guide](UserGuide.MD) contributed by Al
 	Latitude: 30.1234
 	Longitude: -110.6789
 	Elevation: 100.2
+	Timezone: America/Los_Angeles
 ```
 
 11. Go to http(s)://your-server/sqm-directory/index.php in your browser.  If cacheing is enabled, the first run make take some time to initially build the cache.
@@ -90,7 +91,11 @@ Note that this script must be run as the same server user as the web server runs
 
 Optionally, a cron job can be configured to periodically update the cache using a cron.d file (or crontab entry) similar to
 
-```5 * * * * www-data cd /var/www/html; ./bin/update_cache_cli.php```
+```*/5 * * * * www-data cd /var/www/html; ./bin/update_cache_cli.php```
+
+If a cron job is configured, optionally edit config.php to prevent cacheing based on web requests
+
+```$update_cache_cli_only = true;```
 
 ## Large numbers of SQMs
 
@@ -111,6 +116,6 @@ Thanks to Bill Kowalik for sharing his regression analysis code which the SQM Da
 
 ## Licensing
 
-The SQM Visualizer software is licensed under the GNU Affero General Public License version 3 (at your option any later version) and, as such, is free and open-source.
+The SQM Visualizer software is licensed under the [GNU Affero General Public License](https://www.gnu.org/licenses/agpl-3.0.en.html#license-text) version 3 (at your option any later version) and, as such, is free and open-source.
 
 If you wish to incorporate it or its components (including the SQM Data Retriever) in a substantial way in software not sharing that or a similar license, a dual licensing scheme may be arranged at the discretion of the author of the code/owner of the copyright.

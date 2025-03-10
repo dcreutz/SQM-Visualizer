@@ -200,10 +200,11 @@ class SQMUserRequest {
 	}
 	
 	static nightFor(datetime = null) {
-		const date = SQMSunUtils.sunsetBeforeOne(
-			sqmManager.activeSqmIds().map((sqmId) => sqmManager.availableSqmInfos[sqmId]),
-			datetime
-		);
+		const activeSqmInfos = {};
+		sqmManager.activeSqmIds().forEach((sqmId) => {
+			activeSqmInfos[sqmId] = sqmManager.availableSqmInfos[sqmId];
+		});
+		const date = SQMSunUtils.sunsetBeforeOne(activeSqmInfos, datetime);
 		SQMUserInputs.clearNightlyInput();
 		SQMUserInputs.setNightlyInput(date);
 		return SQMUserRequest.nightly(null);
@@ -222,11 +223,24 @@ class SQMUserRequest {
 		if (!date) {
 			date = SQMDate.formatServerDate(SQMUserInputs.nightlyDatePicker.selectedDates[0]);
 		}
+		const activeSqmInfos = {};
+		sqmManager.selectedSqmIds().forEach((sqmId) => {
+			activeSqmInfos[sqmId] = sqmManager.availableSqmInfos[sqmId];
+		});
+		const times = SQMSunUtils.sunsetSunrisesForNight(date,activeSqmInfos);
+		const sunset = _.keys(times).map((sqmId) => times[sqmId].sunset)
+						.reduce((acc,val) => acc < val ? acc : val,
+							times[_.keys(times)[0]].sunset);
+		const sunrise = _.keys(times).map((sqmId) => times[sqmId].sunrise)
+						.reduce((acc,val) => acc > val ? acc : val,
+							times[_.keys(times)[0]].sunrise);
 		return sqmManager.userRequest(
 			{ type: 'nightly', date: date, twilightType: sqmConfig.twilightType },
 			(startDatetime,endDatetime) =>
-				"All readings from sunset " + SQMDate.serverToTitleDatetime(startDatetime) + 
-				" to sunrise " + SQMDate.serverToTitleDatetime(endDatetime),
+//				"All readings from sunset " + SQMDate.serverToTitleDatetime(startDatetime) + 
+//				" to sunrise " + SQMDate.serverToTitleDatetime(endDatetime),
+				"All readings from sunset " + SQMDate.serverToTitleDatetime(sunset) +
+				" to sunrise " + SQMDate.serverToTitleDatetime(sunrise),
 			slide
 		)
 		.then((sqmResponses) => {

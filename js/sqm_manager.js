@@ -268,7 +268,10 @@ class SQMManager {
 				responses[sqmId] = this.inMemorySqms[sqmId].readingsRange();
 			});
 			this.#computeEarliestAndLatest(responses);
-			SQMUserInputs.setAvailableMonthsFrom(_.min(_.values(this.#earliestDatetimes)));
+			SQMUserInputs.setAvailableMonthsFrom(
+				_.min(_.values(this.#earliestDatetimes)),
+				_.max(_.values(this.#latestDatetimes))
+			);
 			return responses;
 		}).catch((error) => {
 			SQMManager.silentErrorHandler(error,"Something went wrong fetching reading range info");
@@ -496,6 +499,20 @@ class SQMManager {
 				console.log("Additional info");
 				error.debugObjects.forEach((object) => { console.log(object); });
 			}
+		}
+	}
+	
+	#getTZOffset(timeZone){
+		const str = new Date().toLocaleString('en', {timeZone, timeZoneName: 'longOffset'});
+		const [_,h,m] = str.match(/([+-]\d+):(\d+)$/) || [, '+00', '00'];
+		return -(h * 60 + (h > 0 ? +m : -m));
+	}
+	
+	getTimezoneOffset(sqmId,date) {
+		if (this.availableSqmInfos[sqmId].time_zone_id) {
+			return this.#getTZOffset(this.availableSqmInfos[sqmId].time_zone_id);
+		} else {
+			return this.inMemorySqms[sqmId].getTimezoneOffset(date);
 		}
 	}
 }

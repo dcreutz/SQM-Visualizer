@@ -1,8 +1,6 @@
-# Sky Quality Meter (SQM) Visualizer user guide
+# Sky Quality Meter (SQM) Visualizer User Guide
 
-Contributed by Alan Creutz.
-
-This document describes the functions/features of the SQM Visualizer, how to access each feature, and how to navigate around the display. The SQM Visualizer works with data from a Unihedron SQM Device in the 'International Dark Sky Association (IDA) NSBM Community Standards for Reporting Skyglow Observations' [format](https://darksky.org/app/uploads/bsk-pdf-manager/47_SKYGLOW_DEFINITIONS.PDF) and files in the format output by the Unihedron software feature 'sun-moon-mw-clouds'.
+This describes the functions/features of the SQM Visualizer, how to access each feature, and how to navigate around the display. The SQM Visualizer works with data from a Unihedron SQM Device in the 'International Dark Sky Association (IDA) NSBM Community Standards for Reporting Skyglow Observations' [format](https://darksky.org/app/uploads/bsk-pdf-manager/47_SKYGLOW_DEFINITIONS.PDF) and files in the format output by the Unihedron software feature 'sun-moon-mw-clouds'.
 
 The SQM Visualizer can display “live data” being captured to a computer that both stores the captured data and runs the SQM Visualizer as a web application, in essentially real time.  In addition, without “real time” data, the SQM Visualizer will display historical data that may be loaded periodically (e.g., daily, monthly, or at some other frequency).  Thus, a user can transfer data from the station’s local computer to a central server via FTP, manual file transfer with USB sticks, or other mechanisms.
 
@@ -14,7 +12,7 @@ Upon launching the SQM Visualizer, the user is presented with a graph showing th
 
 While there are number of configuration options that can tweak the specifics of the display for individual implementations, the default configuration presents nightly data with the best (darkest/highest msas) readings at the bottom of the graph and the readings for the brightest sky at the top.  Since readings typically run from evening twilight into the night (ending at morning twilight), the readings presented generally look like a broad valley, rapidly moving towards the best readings at the bottom of the graph, running through the night, and then moving upwards as the sun rises in the morning.  By default, when presenting best nightly readings over a time range, the vertical axis is oriented with the darkest readings at the top.
 
-The graph consists of a line with circles representing each data point.  The colors and shading of the line and circles provide information about the conditions of the sky (e.g., moon above the horizon, estimated cloud cover [as calculated by algorithms within the SQM Visualizer], etc.).  The SQM Visualizer can display multiple reporting stations (as described below).  Each reporting station is displayed with a different color.
+The graph consists of a line with circles representing each data point.  The colors, shading and shape of the line and circles provide information about the conditions of the sky (e.g., moon above the horizon, estimated cloud cover [as calculated by algorithms within the SQM Visualizer], etc.).  The SQM Visualizer can display multiple reporting stations (as described below).  Each reporting station is displayed with a different color.
 
 For each station, there are a variety of color/shading options that may appear (again, this is assuming the default configuration as many values are configurable):
 
@@ -22,6 +20,7 @@ For each station, there are a variety of color/shading options that may appear (
 * Yellow/orange circles indicate that the sun is within 18 degrees of the horizon, and therefore can be presumed to have an influence on the level of darkness.
 * Lines and circles that are “ghosts” (i.e., faint) indicate that it is significantly cloudy (as calculated by algorithms within the SQM Visualizer) and any data should not be considered to represent clear-sky darkness values.
 * Circles that are neither yellow nor solid indicate that the moon is above the horizon.  These circles may run from faint to deep gray, indicating the intensity of the moon’s probable interference (a combination of altitude and phase of the moon).  The darker the circle, the less moon interference is present.  (Note: the level of moon interference is calculated from information on moon altitude and phase and is not itself measured.)
+* Diamonds indicate that the milky way may be interfering in that the galactic latitude is within the specified cutoff (defaults to 2.5 degrees)
 
 Since the SQM Visualizer can show multiple stations at one time, each station is assigned a specific color (blue, gray, orange, etc.).  Depending on the specific configuration of your implementation, the default station for your implementation is deep blue.  As additional stations are identified for display, the SQM Visualizer will assign additional colors.  A legend below the graphical display provides the color associated with each displayed station; placing the cursor over a station (equivalently, clicking on it when on a touch screen device) in the legend shows it’s latitude, longitude, and local time zone (and elevation if that is specified in the data files).   
 
@@ -45,18 +44,21 @@ Clicking with the right mouse button (press and hold on touch screen devices) an
 * Show/hide bar chart – which displays a bar chart below the data display providing an aggregate view of the data readings for the displayed interval
 * Hide/show best reading – which removes the display of the best reading during the time interval that appears above the graph
 * Hide/show latest reading – which removes the display of the last reading that appears below the graphical display
-* Exclude/include sun, moon, clouds data – which removes those data points where the algorithms of the SQM Visualizer evaluates that the data are influenced by the sun, moon, or clouds; this results in gaps in the graph and shows data points only when the sky is dark and presumed to be clear
-* Exclude/include clouds data – which removes those data points where the algorithms of the SQM Visualizer evaluates that the data are influenced by clouds (but does not remove sun or moon influenced data)
+* Exclude/include sun, moon, MW, clouds data – which removes those data points where the algorithms of the SQM Visualizer evaluates that the data are influenced by the sun, moon, milky way, or clouds; this results in gaps in the graph and shows data points only when the sky is dark and presumed to be clear
+* Exclude/include cloudy data – which removes those data points where the algorithms of the SQM Visualizer evaluates that the data are influenced by clouds (but does not remove sun or moon influenced data)
 * Axis minimum – which sets the minimum msas reading to be included on the vertical axis (note that the minimum cannot be set lower than the bad daat cutoff specified in the configuration file, the default cutoff is 10.0)
 * Axis maximum – which sets the maximum msas reading to be included on the vertical axis
 * Reverse vertical axis – which reverses the direction of the vertical axis
 * Hide/show legend – which removes the legend below the graph showing the color codes and geographical data for the (possibly multiple) SQM stations displayed on the graph
-* Hide/show key – which removes the key below the graph legend describing the colorization based on sun, moon and clouds
-* Add local data – which allows the user to load files of SQM data from their own device; for each dataset uploaded, the name of the station is Uploaded, Uploaded2, etc.  (Note that this data does not persist past the current session of the SQM Visualizer and is not uploaded to the server.)
+* Hide/show key – which removes the key below the graph legend describing the colorization based on sun, moon, MW and clouds
+* Add local data – which allows the user to load files of SQM data from their own device.  (Note that this data does not persist past the current session of the SQM Visualizer and is not uploaded to the server.)
 * View data files – which allows the user to view the raw data files
 * About... – which shows information about the SQM Visualizer software
+* User Guide – which shows this guide
 
-Note that on mobile devices with small screens, some options are disabled in order to keep the menu small enough to be completely visible.
+On mobile devices with small screens, some options are disabled in order to keep the menu small enough to be completely visible.
+
+The options to exclude cloudy data are only available if the data files contain mean r squared calculations (or if run on a server).
 
 ## Detailed information for a reading
 
@@ -65,6 +67,7 @@ If you hover over a specific data point (equivalently, click on a data point on 
 * Date/time of the reading
 * Moon status at the time of the reading
 * Sun status at the time of the reading
+* Galactic position at the time of the reading
 * Mean $r^2$, a technical value used in calculating the estimated cloud cover; in general a higher $r^2$ suggests a more cloudy sky
 * Name of the SQM station that associated the data point
 * Image thumbnail (if images are attached to the data)
@@ -82,3 +85,9 @@ If the user swipes right or left on a touch screen device (equivalently on a non
 ## Grid view
 
 The “grid” button in the top center brings up a grid of six nights graphs (alternatively, six months graphs when in best nightly mode) allowing for quick visual comparison.  Clicking on a graph takes the user to the full-size version of that graph.  Left and right arrow buttons (equivalently swiping on mobile) shifts the grid three nights (or three months).
+
+## Licensing
+
+The SQM Visualizer software is licensed under the [GNU Affero General Public License](https://www.gnu.org/licenses/agpl-3.0.en.html#license-text) version 3 (at your option any later version) and, as such, is free and open-source.
+
+User Guide contributed by Alan Creutz.

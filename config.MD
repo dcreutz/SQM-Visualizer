@@ -40,9 +40,11 @@ Most recent gives the most recent night during which readings were taken; tonigh
 
 ### Twilight type
 
-```twilightType: 'civil' | 'nautical' | 'astronomical',```
+```
+twilightType: 'civil' | 'nautical' | 'astronomical',
+```
 
-twilightType specifies which type of twilight to use.  Options are 'civil', 'nautical' and 'astronomical'.  Default is 'nautical'.
+twilightType specifies which type of twilight to use.  Options are 'civil', 'nautical' and 'astronomical'.  Default is 'civil'.
 
 ### Axis orientation
 
@@ -90,6 +92,12 @@ Set dataFilesLink to the url of the data files if you want to allow the user to 
 
 Set aboutLink to false to disable the About... context menu item.
 
+### User Guide
+
+```userGuideLink: true | false,```
+
+Set userGuideLink to false to disable the User Guide context menu item.
+
 ### Filtering
 
 ```
@@ -103,7 +111,7 @@ The visualizer will ignore readings determined to be bad data in two ways.  badD
 
 The visualizer can also filter by cloudiness (mean $r^2$) and sun and moon information.  The end user can control the filtering from the context menu.  Setting showCloudyByDefault to false will have it not display cloudy data (unless the user overrides this from the context menu) and setting showSunMoonCloudsByDefault to false will filter on all three.
 
-### Colorization (sun, moon and clouds)
+### Colorization (sun, moon, and clouds)
 
 ```
 colorizeData: true | false,
@@ -128,6 +136,14 @@ Moon altitude and illumination are indicated by black to white with white meanin
 moonAltitudeCutoffs indicate values (in degrees) below which the moon should be considered to not affect the readings (regardless of its illumination) and above which the moon is considered fully in the sky.  moonIlluminationCutoff gives the illumination value above which the moon is considered to be affecting the readings.  The illumination value is computed as the product of the lunar illumination (fraction of lunar surface area illuminated) times the fraction of the way the moon is between the alitude cutoffs.
 
 hoverTextSun, hoverTextMoon and hoverTextR2 determine whether the sun, moon and mean $r^2$ values should be displayed when the user hovers over a data point (equivalently, clicks on a data point when using a touch screen device).
+
+### Milky Way Filtering
+```
+milkyWay: true | false,
+milkyWayCutoff: <number>
+```
+
+If milkyWay is set to true, readings taken when the galactic latitude is within milkyWayCutoff will display as diamonds and will be filtered out if the exclude data option is used.
 
 ### Polling for new data
 

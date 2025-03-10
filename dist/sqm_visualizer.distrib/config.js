@@ -19,7 +19,7 @@ const sqmConfig = {
 	
 	/*	which twilight type to use when requesting nightly data
 		options are 'civil', 'nautical' or 'astronomical' */
-	twilightType: 'nautical',
+	twilightType: 'civil',
 	
 	/*	whether higher msas values appear at the bottom of the individual readings chart */
 	nightlyAxisDescending: true,
@@ -41,10 +41,13 @@ const sqmConfig = {
 	
 	/*	set this to the directory path of the data files if you wish to let the end user view
 		your raw data files directly; set to false or unset to disable this */
-	dataFilesLink: 'data',
+	//dataFilesLink: 'data',
 	
 	/*	whether to show the about link in the bottom right corner */
-	showAboutLink: true,
+	showAboutLink: false,
+	
+	/*	whether to show the user guide link in the bottom right corner */
+	showUserGuideLink: true,
 	
 	/*	if a reading is below this, it will be ignored */
 	badDataCutoff: 10.0,
@@ -89,7 +92,13 @@ const sqmConfig = {
 		alittude will be filtered out when filter sun moon clouds is selected */
 	moonIlluminationCutoff: 0.1,
 	
-	/*	whether to show the sun, moon, mean r^2 information in the popup that appears
+	/*	whether to take milky way location into account */
+	milkyWay: true,
+	
+	/*	galactic latitude cutoff to display and filter out if milkyWay is true */
+	milkyWayCutoff: 2.5,
+	
+	/*	whether to show the sun, moon, mean r^2, MW information in the popup that appears
 		when hovering over a point in the chart (touching a point on mobile)
 		
 		if working with a large number of stations, setting these to false will make the 
@@ -97,6 +106,7 @@ const sqmConfig = {
 	hoverTextSun: true,
 	hoverTextMoon: true,
 	hoverTextR2: true,
+	hoverTextMW: true,
 	
 	/*	how frequently in minutes to check for new data
 		pollingInterval reruns the latest user query

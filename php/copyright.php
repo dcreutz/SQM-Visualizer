@@ -1,3 +1,3 @@
 <!-- SQM Visualizer -->
-<!-- (c) 2024 Darren Creutz -->
+<!-- (c) 2025 Darren Creutz -->
 <!-- Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 -->

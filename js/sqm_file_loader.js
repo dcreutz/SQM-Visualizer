@@ -79,6 +79,9 @@ class SQMFileLoader {
 		const indices = {};
 		_.keys(parsed.headers).forEach((key) => {
 			const header = parsed.headers[key].toLowerCase();
+			if (header.includes("location")) {
+				indices.location = key;
+			}
 			if (header.includes("local")) {
 				if (header.includes("date")) {
 					if (header.includes("time")) {
@@ -129,6 +132,12 @@ class SQMFileLoader {
 		if ((!indices.datetime) && ((!indices.date) || (!indices.time))) {
 			throw new Error("Could not parse data file");
 		}
+		// get the name of this data
+		const name =	SQMFileLoader.#valueFrom(dataText,"# SQM Name")
+					||	SQMFileLoader.#valueFrom(dataText,"# Name")
+					||	SQMFileLoader.#valueFrom(dataText,"# Data supplier")
+					||	SQMFileLoader.#valueFrom(dataText,"# Location name")
+					||	(indices.location && parsed.data[0][indices.location]);
 		// create the lat/long/elev object for this data
 		const position = {};
 		if ((indices.latitude != null) && (indices.longitude != null)) {
@@ -157,9 +166,6 @@ class SQMFileLoader {
 				}
 			}
 		}
-		const timezone = getNearestTimezone(position.latitude,position.longitude);
-		position.time_zone_id = timezone.id;
-		position.time_zone_name = timezone.name;
 		// iterate through the rows of parsed data, storing them indexed by date string
 		const dataByDate = {};
 		const rawByDate = {};
@@ -194,6 +200,17 @@ class SQMFileLoader {
 				});
 			});
 		}
-		return { data: dataByDate, raw: rawByDate, position: position };
+		return { name: name, data: dataByDate, raw: rawByDate, position: position };
+	}
+	
+	static #valueFrom(dataText,string) {
+		const index = dataText.indexOf(string);
+		if (index >= 0) {
+			const colonIndex = dataText.indexOf(":",index);
+			const endIndex = dataText.indexOf("\n",colonIndex);
+			return dataText.substring(colonIndex+1,endIndex).trim();
+		} else {
+			return null;
+		}
 	}
 }

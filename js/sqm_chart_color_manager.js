@@ -183,6 +183,10 @@ class SQMChartColorManager {
 	}
 	
 	pointStyle(sqmId,reading) {
+		if (sqmConfig.milkyWay && reading && reading.galactic_latitude &&
+				(Math.abs(reading.galactic_latitude) < sqmConfig.milkyWayCutoff)) {
+			return 'rectRot';
+		} 
 		return 'circle';
 	}
 	
@@ -232,6 +236,9 @@ class SQMChartColorManager {
 				elt.style.borderColor = color;
 			});
 		}
+		$('keymw1a').style.background = 'rgba(0,0,0,1.0)';
+		$('keymw1a').style.borderColor = color;
+		$('keymwtooltip1').innerHTML = "Galactic latitude within " + sqmConfig.milkyWayCutoff + " degrees";
 	}
 }
 

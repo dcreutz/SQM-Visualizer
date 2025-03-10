@@ -1,6 +1,6 @@
 /*	sqm_time_chart.js
 	SQM Visualizer
-	(c) 2024 Darren Creutz
+	(c) 2025 Darren Creutz
 	Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE v3 */
 
 /*	manages the actual time chart object central to the app */
@@ -42,6 +42,10 @@ class SQMTimeChart {
 				},
 				onClick: SQMTimeChart.#click,
 				plugins: {
+					title: {
+						display: false,
+						text: "SQM Chart",
+					},
 					legend: {
 						display: true,
 						position: 'bottom',
@@ -405,6 +409,12 @@ class SQMTimeChart {
 			SQMUserDisplay.showUnknownCloudiness();
 		} else {
 			SQMUserDisplay.hideUnknownCloudiness();
+		}
+		// tell the user display whether to show the triangle in the key
+		if (sqmConfig.milkyWay) {
+			SQMUserDisplay.showMWKey();
+		} else {
+			SQMUserDisplay.hideMWKey();
 		}
 		// tell the context menu the computed min and max
 		this.#contextMenu.setMin(Math.floor(this.#chartObject.scales.y.min));
@@ -827,9 +837,9 @@ class SQMTimeChart {
 		
 		if (sqmConfig.hoverTextSun && reading.sun_position) {
 			result.push("Solar altitude " +
-				Math.round(reading.sun_position.altitude*180/Math.PI) + " degrees"
+				(reading.sun_position.altitude*180/Math.PI).toFixed(1) + " degrees"
 			);
-			const sunAzimuth = Math.round(reading.sun_position.azimuth*180/Math.PI);
+			const sunAzimuth = (reading.sun_position.azimuth*180/Math.PI).toFixed(1);
 			if (sunAzimuth >= 0) {
 				result.push("Solar azimuth " + sunAzimuth + " degrees");
 			} else {
@@ -838,10 +848,10 @@ class SQMTimeChart {
 		}
 		if (sqmConfig.hoverTextMoon && reading.moon_position) {
 			result.push("Lunar altitude " +
-				Math.round(reading.moon_position.altitude*180/Math.PI) +
+				(reading.moon_position.altitude*180/Math.PI).toFixed(1) +
 				" degrees");
 			const moonAzimuth =
-				Math.round(reading.moon_position.azimuth*180/Math.PI);
+				(reading.moon_position.azimuth*180/Math.PI).toFixed(1);
 			if (moonAzimuth >= 0) {
 				result.push("Lunar azimuth " + moonAzimuth + " degrees");
 			} else {
@@ -851,6 +861,10 @@ class SQMTimeChart {
 			result.push("Lunar illumination " +
 				Math.round(reading.moon_illumination.fraction*100) + "%"
 			);
+		}
+		if (sqmConfig.milkyWay && sqmConfig.hoverTextMW && reading.galactic_latitude) {
+			result.push("Galactic Latitude " + reading.galactic_latitude.toFixed(1) + " degrees");
+			result.push("Galactice Longitude " + reading.galactic_longitude.toFixed(1) + " degrees");
 		}
 		if (sqmConfig.hoverTextR2 && reading.mean_r_squared && !reading.mean_r_squared_copied) {
 			result.push(

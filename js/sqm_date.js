@@ -81,10 +81,7 @@ class SQMDate {
 	}
 	
 	static serverToTitleDatetime(datetime) {
-		return dateFns.format(
-			dateFns.parse(datetime,SQMDate.#serverDatetime,new Date()),
-			SQMDate.#titleDatetime
-		);
+		return dateFns.format(new Date(datetime),SQMDate.#titleDatetime);
 	}
 	
 	static parseServerMonth(string) {
@@ -93,6 +90,24 @@ class SQMDate {
 	
 	static parseServerDatetime(string) {
 		return dateFns.parse(string,SQMDate.#serverDatetime,new Date());
+	}
+	
+	static fixtz(date,sqmId) {
+		if (sqmManager.availableSqmInfos[sqmId].time_zone_id) {
+			const newDate = new Date(date.toLocaleString('en-US',
+				{timeZone:sqmManager.availableSqmInfos[sqmId].time_zone_id})
+			);
+			if (!isNaN(newDate)) {
+				// if the calculation fails, just return the datetime given
+				return newDate;
+			}
+		}
+		const offset = sqmManager.getTimezoneOffset(sqmId,date);
+		return dateFns.addMinutes(date,date.getTimezoneOffset() - offset);
+	}
+	
+	static fixtzoffset(date,offset) {
+		return dateFns.addMinutes(date,offset - date.getTimezoneOffset());
 	}
 	
 	static parseServerDate(string) {

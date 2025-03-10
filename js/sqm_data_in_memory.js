@@ -11,8 +11,10 @@ class SQMDataInMemory {
 	#bestData; // best nightly readings
 	#position; // lat/long/elev
 	#name; // display name of sqm
+	#sqmId;
 	
 	constructor(name) {
+		this.#sqmId = name;
 		this.#name = name;
 		this.#allData = {};
 		this.#rawData = {};
@@ -28,6 +30,9 @@ class SQMDataInMemory {
 			const parsed = SQMFileLoader.parseData(theText);
 			if (!parsed) {
 				throw new Error("Could not parse data");
+			}
+			if (parsed.name) {
+				this.#name = parsed.name;
 			}
 			const data = parsed.data;
 			const position = parsed.position;
@@ -134,7 +139,7 @@ class SQMDataInMemory {
 					SQMSunUtils.sunsetSunriseForNight(request.date,
 						this.#position.latitude,
 						this.#position.longitude,
-						this.#position.timezone
+						this.#sqmId
 					);
 				return this.getAllReadings(sunset,sunrise);
 			case 'all_readings':
@@ -184,5 +189,24 @@ class SQMDataInMemory {
 	
 	allDailyReadings() {
 		return this.#allData;
+	}
+
+	getTimezoneOffset(date) {
+		var dateString = SQMDate.formatServerDate(date);
+		if (!this.#rawData[dateString]) {
+			const keys = _.keys(this.#rawData);
+			if (keys.length == 0) {
+				return date.getTimezoneOffset();
+			}
+			dateString = keys[keys.length-1];
+		}
+		const rawreading = _.values(this.#rawData[dateString])[0];
+		const readingdate = SQMDate.parseServerDatetime(_.keys(this.#rawData[dateString])[0]);
+		const utcDate = SQMReadings.utcDate(rawreading);
+		if (utcDate) {
+			return dateFns.differenceInMinutes(utcDate,readingdate);
+		} else {
+			return date.getTimezoneOffset();
+		}
 	}
 }
