@@ -172,16 +172,21 @@ class SQMTimeChartGrid {
 		const callbacks = {};
 		const queries = {};
 		
+		const activeSqmInfos = {};
+		sqmManager.activeSqmIds().forEach((sqmId) => {
+			activeSqmInfos[sqmId] = sqmManager.availableSqmInfos[sqmId];
+		});
+		
 		// default is to put the start date top left
 		// check whether it should be elsewhere to avoid empty charts
 		// e.g. when the specified date is today so there is no data for the next two days
 		const lastAvailableNight = SQMSunUtils.sunsetDateBeforeOne(
-			sqmManager.activeSqmIds().map((sqmId) => sqmManager.availableSqmInfos[sqmId]),
+			activeSqmInfos,
 			sqmManager.mostRecentDatetime()
 		);
 		const firstAvailableNight = dateFns.addDays(
 			SQMSunUtils.sunsetDateBeforeOne(
-				sqmManager.activeSqmIds().map((sqmId) => sqmManager.availableSqmInfos[sqmId]),
+				activeSqmInfos,
 				sqmManager.earliestDatetime()
 			),1
 		);
