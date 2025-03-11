@@ -38,6 +38,8 @@ Many features are documented in the [user guide](UserGuide.MD) contributed by Al
 
 ## Installation (Server)
 
+The server version requires PHP version 8 or later.
+
 1. [Download the server-side SQM Visualizer](https://github.com/dcreutz/SQM-Visualizer/releases/download/v0.2alpha/sqm_visualizer_server.tar.gz).
 
 2. Extract the tar.gz file and place the contents in a directory on your web server.
