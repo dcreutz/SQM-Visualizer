@@ -34,6 +34,8 @@ Many features are documented in the [user guide](UserGuide.MD) contributed by Al
 
 3. When prompted, select the data files on your computer (multiple files can be selected simultaneously).
 
+4. [Optiona] Edit the sqm_visualizer.html file to customize the options.  See the [SQM Visualizer configuration instructions](config.MD) for more information.
+
 ## Installation (Server)
 
 1. [Download the server-side SQM Visualizer](https://github.com/dcreutz/SQM-Visualizer/releases/download/v0.1alpha/sqm_visualizer_server.tar.gz).

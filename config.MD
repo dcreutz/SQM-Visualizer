@@ -2,7 +2,7 @@
 
 The SQM Visualizer can be configured by editing the file config.js in the same directory as index.php.  The backend can be configured by editing the file config.php in the same directory.
 
-The standalone version does not have configuration options.
+The standalone version supports only some the configuration options.
 
 All options, and in fact the config.js file itself, are optional and will default sensibly if not specified.
 

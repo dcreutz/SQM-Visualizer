@@ -175,9 +175,9 @@ class SQMChart {
 	
 	// when redrawing the time chart, alsodraw the title
 	redrawTimeChart() {
-		SQMUserDisplay.setGraphTitle(this.#titleBuilder(
-			this.startDatetime,this.endDatetime
-		));
+		const title = this.#titleBuilder(this.startDatetime,this.endDatetime);
+		SQMUserDisplay.setGraphTitle(title);
+		this.#timeChart.setTitle(title);
 		this.#timeChart.redraw();
 	}
 	

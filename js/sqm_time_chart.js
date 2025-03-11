@@ -110,6 +110,18 @@ class SQMTimeChart {
 		this.#tooltipIsShowing = false;
 		this.#contextMenu = new SQMTimeContextMenu(divId,this,chart);
 	}
+	
+	setTitle(title) {
+		this.#chartObject.options.plugins.title.text = title;
+	}
+	
+	showTitle() {
+		this.#chartObject.options.plugins.title.display = true;
+	}
+	
+	hideTitle() {
+		this.#chartObject.options.plugins.title.display = false;
+	}
 
 	// returns an array of the sqmIds which are currently visible in the chart
 	activeSqmIds() {
@@ -958,7 +970,8 @@ class SQMTimeChart {
 	// return the chart.js object as an image base64 encoded
 	// needed for user downloading the chart as an image
 	image() {
-		return this.#chartObject.toBase64Image();
+		const image = this.#chartObject.toBase64Image();
+		return image;
 	}
 	
 	// return the chart.js object as a javascript blob
