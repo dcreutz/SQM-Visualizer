@@ -28,6 +28,9 @@ const sqmConfig = {
 	// enabledSqms: [ "creutz", "bill" ],
 	// showSqmsDropdown: true,
 	
+	/*	error message to display to the end user */
+	userErrorMessage: "Something went wrong retrieving requested data, try reloading the page.\n\nIf this is the first run, this is likely due to the cache still being built.\n\nIf the problem persists, try clearing the cache.",
+	
 	/*	the title to display */
 	title: "Creutz SQM Visualizer",
 	
@@ -40,7 +43,7 @@ const sqmConfig = {
 	
 	/*	which twilight type to use when requesting nightly data
 		options are 'civil', 'nautical' or 'astronomical' */
-	twilightType: 'nautical',
+	twilightType: 'civil',
 	
 	/*	whether higher msas values appear at the bottom of the individual readings chart */
 	nightlyAxisDescending: true,
@@ -59,6 +62,12 @@ const sqmConfig = {
 	
 	/*	should the latitude and longitude of the station(s) be shown */
 	showLatitudeLongitude: true,
+	
+	/*	whether to show the about link in the bottom right corner */
+	showAboutLink: false,
+	
+	/*	whether to show the user guide link in the bottom right corner */
+	showUserGuideLink: true,
 	
 	/*	how frequently in minutes to check for new data
 		pollingInterval reruns the latest user query
@@ -121,6 +130,12 @@ const sqmConfig = {
 		alittude will be filtered out when filter sun moon clouds is selected */
 	moonIlluminationCutoff: 0.1,
 	
+	/*	whether to take milky way location into account */
+	milkyWay: true,
+	
+	/*	galactic latitude cutoff to display and filter out if milkyWay is true */
+	milkyWayCutoff: 2.5,
+	
 	/*	whether to show the sun, moon, mean r^2 information in the popup that appears
 		when hovering over a point in the chart (touching a point on mobile)
 		
@@ -129,6 +144,7 @@ const sqmConfig = {
 	hoverTextSun: true,
 	hoverTextMoon: true,
 	hoverTextR2: true,
+	hoverTextMW: true,
 	
 	/*	set this to the directory path of the data files if you wish to let the end user view
 		your raw data files directly; set to false or unset to disable this */

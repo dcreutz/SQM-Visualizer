@@ -28,6 +28,12 @@
 		if cache_directory is not writeable no cacheing will occur */
 	$cache_directory = "cache";
 	
+	/*	update cache from command line only
+	
+		set to true to not load new data into the cache except using the command line utility
+		only enable this if you have configured a cron job or equivalent to update the cache */
+	$update_cache_cli_only = true;
+	
 	/*	whether data files should be trusted to be named including YYYY-MM or YYYY-MM-DD
 		and trusted to have the data in chronological order and end in newline characters
 	
