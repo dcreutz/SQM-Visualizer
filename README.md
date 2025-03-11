@@ -28,7 +28,7 @@ Many features are documented in the [user guide](UserGuide.MD) contributed by Al
 
 ## Installation (Standalone)
 
-1. [Download the standalone SQM Visualizer](https://github.com/dcreutz/SQM-Visualizer/releases/download/v0.1alpha/sqm_visualizer_standalone.zip) and extract the zip file.
+1. [Download the standalone SQM Visualizer](https://github.com/dcreutz/SQM-Visualizer/releases/download/v0.2alpha/sqm_visualizer_standalone.zip) and extract the zip file.
 
 2. Open sqm_visualizer.html in your browser (most likely this just means double click on the file, alternatively open a new tab/window in your browser and drag the file into it).
 
@@ -38,7 +38,7 @@ Many features are documented in the [user guide](UserGuide.MD) contributed by Al
 
 ## Installation (Server)
 
-1. [Download the server-side SQM Visualizer](https://github.com/dcreutz/SQM-Visualizer/releases/download/v0.1alpha/sqm_visualizer_server.tar.gz).
+1. [Download the server-side SQM Visualizer](https://github.com/dcreutz/SQM-Visualizer/releases/download/v0.2alpha/sqm_visualizer_server.tar.gz).
 
 2. Extract the tar.gz file and place the contents in a directory on your web server.
 
