@@ -63,7 +63,7 @@ class SQMManager {
 				}
 				this.#sqmDataRequester.clearCharts();
 				SQMManager.errorHandler(error,
-					"Could not retrieve requested data. If this persists, try reloading the page."
+					"Could not retrieve requested data, try reloading the page."
 				);
 			});
 	}

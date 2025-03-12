@@ -127,6 +127,10 @@ class SQMRequest {
 				body: JSON.stringify({ request: request }) }
 		)
 		.then((response)=>response.json()).then((object)=>{
+			if (object['code'] == 'oldphp') {
+				alert("PHP version 8 or later is required for the server backend");
+				return {};
+			}
 			// then return the response once it's loaded
 			if (sqmConfig.debug) {
 				console.log("Response");

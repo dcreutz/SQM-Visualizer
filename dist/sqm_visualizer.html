@@ -1476,7 +1476,7 @@ class SQMManager{availableSqmInfos;inMemorySqms;#selectedSqms;#initialActivatedS
 defaultSqms(){return this.#defaultSqms;}
 initialActivatedSqms(){return this.#initialActivatedSqms;}
 userRequest(request,titleStringCallback,slide=false){return this.#sqmDataRequester.userRequest(request,titleStringCallback,slide).catch((error)=>{if(sqmConfig.debug){console.log("Error processing request");console.log(request);console.log(error);}
-this.#sqmDataRequester.clearCharts();SQMManager.errorHandler(error,"Could not retrieve requested data. If this persists, try reloading the page.");});}
+this.#sqmDataRequester.clearCharts();SQMManager.errorHandler(error,"Could not retrieve requested data, try reloading the page.");});}
 backgroundRequest(request){return SQMRequest.sendBlocking(request).then((sqmReadings)=>{this.#sqmDataRequester.addFromInMemory(request,sqmReadings);return sqmReadings;});}
 directRequest(request){return SQMRequest.send(request,true).then((sqmReadings)=>{this.#sqmDataRequester.addFromInMemory(request,sqmReadings);return sqmReadings;});}
 initialize(){this.#sqmDataRequester=new SQMDataRequester(this,'timechart','barchart');SQMDate.initialize();SQMUserInputs.initialize();SQMUserDisplay.initialize();SQMUserRequest.addEventListeners();SQMBrowserHistory.initialize();SQMImagePopup.initialize();SQMChartColorManager.colorKey();SQMRequest.send({queries:{info:{type:'info'},readings_range:{type:'readings_range'}}}).then((responses)=>{if(!responses){responses={info:{type:'info'},readings_range:{type:'readings_range'}};}
@@ -1576,7 +1576,8 @@ delete SQMRequest.#preloadedRequests[JSON.stringify(requestWithoutSqmIds)];retur
 if(!sqmConfig.fetchUrl){return new Promise((resolve,reject)=>{if(request.queries){const response={};_.keys(request.queries).forEach((query)=>{response[query]={};switch(request.queries[query].type){case'info':response[query].type='info';break;case'readings_range':response[query].type='readings_range';break;case'best_nightly_readings':response[query].type='best_nightly_readings';break;default:response[query].type='all_readings';break;}});resolve(response);}else{const response={};switch(request.type){case'info':response.type='info';break;case'readings_range':response.type='readings_range';break;case'best_nightly_readings':response.type='best_nightly_readings';break;default:response.type='all_readings';break;}
 resolve(response);}});}
 if(sqmConfig.debug){console.log("Request");console.log(request);}
-request.block=blocking;return fetch(sqmConfig.fetchUrl,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({request:request})}).then((response)=>response.json()).then((object)=>{if(sqmConfig.debug){console.log("Response");console.log(object);}
+request.block=blocking;return fetch(sqmConfig.fetchUrl,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({request:request})}).then((response)=>response.json()).then((object)=>{if(object['code']=='oldphp'){alert("PHP version 8 or later is required for the server backend");return{};}
+if(sqmConfig.debug){console.log("Response");console.log(object);}
 return object.response;});}
 static preloadRequest(request,response){SQMRequest.#preloadedRequests[JSON.stringify(request)]=response.response;}
 static setBackgroundLoader(backgroundLoader){SQMRequest.#backgroundLoader=backgroundLoader;}}

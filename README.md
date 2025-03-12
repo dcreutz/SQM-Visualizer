@@ -24,7 +24,7 @@ Thanks to Bill Kowalik for sharing his regression analysis and milky way code.
 
 ## User guide
 
-Many features are documented in the [user guide](UserGuide.MD) contributed by Alan Creutz.
+Many features are documented in the [user guide](UserGuide.md) contributed by Alan Creutz.
 
 ## Installation (Standalone)
 
@@ -34,7 +34,7 @@ Many features are documented in the [user guide](UserGuide.MD) contributed by Al
 
 3. When prompted, select the data files on your computer (multiple files can be selected simultaneously).
 
-4. [Optiona] Edit the sqm_visualizer.html file to customize the options.  See the [SQM Visualizer configuration instructions](config.MD) for more information.
+4. [Optiona] Edit the sqm_visualizer.html file to customize the options.  See the [SQM Visualizer configuration instructions](config.md) for more information.
 
 ## Installation (Server)
 
@@ -42,19 +42,19 @@ The server version requires PHP version 8 or later.
 
 1. [Download the server-side SQM Visualizer](https://github.com/dcreutz/SQM-Visualizer/releases/download/v0.2alpha/sqm_visualizer_server.tar.gz).
 
-2. Extract the tar.gz file and place the contents in a directory on your web server.
+2. Extract the .tar.gz file and place the contents in a directory on your web server.
 
 3. Copy (or symlink) your SQM data files into the data directory.
 
 4. [Recommended] Make the cache directory writeable by the web server user.  On shared hosting, this is often automatic; on a typical linux server, use chown to set the owner of the cache directory to www or www-data.
 
-5. [Optional] If you have a camera taking images of the sky, copy (or symlink) the images in to the images directory.  The directory structure expected is images/YYYY-MM/YYYY-MM-DD/image-file-name, see the [SQM Data Retriever configuration instructions](https://github.com/dcreutz/SQM-Data-Retriever/blob/main/config.MD) for more information.
+5. [Optional] If you have a camera taking images of the sky, copy (or symlink) the images in to the images directory.  The directory structure expected is images/YYYY-MM/YYYY-MM-DD/image-file-name, see the [SQM Data Retriever configuration instructions](https://github.com/dcreutz/SQM-Data-Retriever/blob/main/config.md) for more information.
 
 6. [Optional] If you have images and would like the backend to automatically create thumbnails, make the resized_images directory writeable by the web server user.
 
-7. [Optional] Edit config.js to customize your installation.  See the [SQM Visualizer configuration instructions](config.MD) for more information.
+7. [Optional] Edit config.js to customize your installation.  See the [SQM Visualizer configuration instructions](config.md) for more information.
 
-8. [Optional] Edit config.php to customize your installation.  See the [SQM Data Retriever configuration instructions](config.MD) for more information.
+8. [Optional] Edit config.php to customize your installation.  See the [SQM Data Retriever configuration instructions](config.md) for more information.
 
 9. [Optional] If using a large dataset, particularly if regression analysis and images are involved, run the included command line script bin/update_cache_cli.php (see below).
 
@@ -105,7 +105,7 @@ If a cron job is configured, optionally edit config.php to prevent cacheing base
 
 ## Large numbers of SQMs
 
-If you have data files for more than about five SQMs, you may wish to take advantage of the configuration option enabledSqms (see the [configuration instructions](config.MD)) to only enable some of them and have a dropdown list allowing the user to select which subset are displayed in the chart.
+If you have data files for more than about five SQMs, you may wish to take advantage of the configuration option enabledSqms (see the [configuration instructions](config.md)) to only enable some of them and have a dropdown list allowing the user to select which subset are displayed in the chart.
 
 ## Server backend
 

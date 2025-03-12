@@ -30,7 +30,7 @@
 		</div>
 		<div class="close" id="closeuserguide"></div>
 		<div id="userguidetext">
-<?php echo(Parsedown::instance()->text(file_get_contents("UserGuide.MD"))); ?>
+<?php echo(Parsedown::instance()->text(file_get_contents("UserGuide.md"))); ?>
 		</div>
 	</div>
 </div>
